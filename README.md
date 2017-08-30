@@ -1,6 +1,21 @@
-# vue-upload
-a vue demo with vue vuex 
+# vue-upload-demo
 
-第一个正式应用vue和vue-router的项目。
+> A Vue.js project
 
-一开始的考虑是直接像引入jQuery的方式来做，后来考虑在手机上一按返回可能就退出了页面。所以最终决定用上vue-router。
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
