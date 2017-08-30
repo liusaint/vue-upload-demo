@@ -1,0 +1,47 @@
+<template>
+	<div>
+		<input type="file" accept="image/*;capture=camera" @change='fileChange($event)' >直接调用相机（测试安卓可以，iphone还是有相册）
+		<br/>
+		<input type="file" multiple accept="image/*" @change='fileChange($event)'/>调用相册	
+	</div>
+</template>
+<script>
+	export default {
+		methods:{
+			fileChange($event){
+				//这里应该有个上传的过程。
+				var input = event.currentTarget;
+
+				var self = this;
+				//读取文件
+				if (input.files) {
+					for (var i = 0, fileLen = input.files.length; i < fileLen; i++) {
+						var readed = 0;
+
+						(function(i) {
+							var file = input.files[i];
+							var reader = new FileReader();
+							reader.onload = function(e) {
+
+								self.$store.commit('addImg',{
+									src: e.target.result
+								})
+								readed++;
+								if (readed == fileLen) {
+										self.$router.push('/submitPage');
+										// self.goPage('main'); //切换到发布页
+									}
+
+								}
+
+								reader.readAsDataURL(file);
+
+							})(i)
+
+						}
+
+					}
+				}
+			}
+		}
+	</script>
