@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, minimum-scale=1, user-scalable=no">
+	<title>eln_pic eln上传图片</title>
+	<script src="lib/vue.js"></script>
+	<script src="lib/vue-resource.js"></script>
+	<script src="lib/mock.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<!-- 第一个页面 -->
+		<div class="page-wrap" v-show ='showPage == "index"' >
+			<input type="file" accept="image/*;capture=camera" @change='fileChange($event)' >直接调用相机（测试安卓可以，iphone还是有相册）
+			<input type="file" multiple accept="image/*" @change='fileChange($event)'/>调用相册		
+		</div>
+		
+		<!-- 第二个页面 发布页面-->
+		<div class="page-wrap" v-show ='showPage == "main"' >
+			<div class="main-top">
+				<button class="cancel" @click='cancel'>取消</button>
+				<button class="submit" @click="submit">发布</button>
+			</div>
+			<textarea name="" id="" cols="30" rows="10" class="remark" placeholder='填写备注信息' v-model="remark"></textarea>
+			<ul>
+				<li v-for="(item, index) in choosedImgArr">
+					<i @click="delPic(index)">X</i>
+					<img :src="item.src" alt="" height="100" width="100">				
+				</li>
+				<li>
+					<input type="file" multiple accept="image/*" @change='fileChange($event)'/>
+				</li>
+			</ul>
+			<div class="choosed">{{book.name}} {{exp.name}}</div>
+			<span class="choose" @click="goBookPage">选择记录本</span>
+		</div>
+
+		<!-- 第三个页面 选择记录本-->
+		<div class="page-wrap" v-show ='showPage == "bookPage"' >
+			选择记录本
+			<button @click="goPage('main')">返回</button>
+			<input type="text" v-model="searchKey" @input="searchBook()">
+			<ul>
+				<li v-for="(item,index) in bookData" @click="chooseBook(item)">
+					{{item.name}}
+				</li>
+			</ul>
+		</div>
+
+		<!-- 第四个页面 选择实验-->
+		<div class="page-wrap" v-show ='showPage == "expPage"' >
+			选择实验
+			<button @click="goBookPage">返回</button>
+			<input type="text" v-model="searchKey" @input="searchExp()">
+			<li v-for="(item,index) in expData" @click="chooseExp(item)">
+				{{item.name}}
+			</li>
+		</div>
+
+
+		<!-- 第五个页面 操作成功-->
+		<div class="page-wrap" v-show ='showPage == "successPage"' >
+			操作成功
+		</div>
+
+
+	</div>
+	<script src="eln.js"></script>
+</body>
+</html>
