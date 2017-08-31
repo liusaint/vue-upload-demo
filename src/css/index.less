@@ -6,3 +6,403 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+@charset "UTF-8";
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    /*word-break:break-all;*/
+    word-wrap:break-word;
+}
+*{
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+button{
+	background: none;
+	border: none;
+}
+input{
+    white-space:nowrap;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+*{
+    background-repeat: no-repeat;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+ul,li,ol{
+    list-style: none;
+}
+img{
+    border: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+body{
+    position: relative;
+	background: #e1e4eb;
+}
+.content{
+    min-height: 100%;
+}
+a{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    tap-highlight-color: rgba(0,0,0,0);
+    focus-ring-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-focus-ring-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0,0,0,0);
+    -moz-focus-ring-color: rgba(0, 0, 0, 0);
+}
+input,button{
+    outline: none;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica,sans-serif;
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+}
+header{
+	line-height: 44px;
+	background: #000;
+	color: #fff;	
+}
+.layout-box {
+    display: flex;
+}
+.layout-box .son-box {
+    flex: 1;
+    width: 100%;
+    position: relative;
+	color: #333;
+}
+.son-box.on {
+	color: #1388ff;	
+}
+.fixed{
+	position: fixed;
+}
+.relative{
+	position: relative;
+}
+.absolute{
+	position: absolute;
+}
+.left{
+	left: 0px;
+}
+.right{
+	right: 0px;
+}
+.text-center{
+	text-align: center;
+}
+
+.textarea-box{
+	background: rgba(0,0,0,.4);
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	display: none;
+}
+.textarea-box .input-box{
+	background: #f4f6fa;
+	padding: 9px 10px;
+	width: 100%;
+	bottom: 0px;
+}
+.textarea-box .textarea-head{
+	line-height: 26px;
+	margin-bottom: 9px;
+	font-size: .95rem;
+} 
+.textarea-box textarea{
+	width: 100%;
+	resize: none;
+	padding: 8px 5px;
+	border-color: #dce0e6;
+	height: 129px;
+	font-size: .9rem;
+}
+.textarea-box .title{
+	font-size: 1rem;
+}
+.textarea-head .text-btn{
+	width: 48px;
+	text-align: center;
+	display: inline-block;
+	line-height: 24px;
+	border: 1px solid #666;
+	border-radius: 3px;
+	font-size: .8rem;
+	color: #666;
+}
+.textarea-head .blue-btn{
+	border-color: #1388ff;
+	color: #1388ff;
+}
+.big-btn{
+	line-height: 32px;
+	width: 44%;
+}
+.text-btn.active{
+    background: #ddd;
+}
+.blue-btn.active{
+	background: #cce5ff;
+}
+.imgico{
+	background: url('/images/ico.png');
+	background-size: 150px;
+}
+.app-header .left{
+	font-size: .75rem;
+}
+.back-ico{
+	display: inline-block;
+	width: 8px;
+	height: 15px;
+	background-position: -41px -2px;
+	vertical-align: middle;
+	margin: -2px 4px 0 0;
+}
+.back-menu, .right-menu{
+	padding: 0px 15px;
+}
+.menu-ico{
+	display: inline-block;
+	width: 19px;
+	height: 15px;
+	background-position: -52px -2px;
+	vertical-align: middle;
+}
+.back-menu.active, .right-menu.active{
+	background: #444;
+}
+.tab-menu{
+	line-height: 38px;
+	background: #fff;
+	margin-bottom: 7px;
+}
+.tab-menu .active{
+	background: #f5f5f5;
+}
+.tab-menu .son-box:first-child:after{
+	content: '';
+	display: inline-block;
+	height: 36px;
+	width: 1px;
+	background: #dce0e6;
+	position: absolute;
+	right: 0px;
+	top: 1px;
+	transform:scale(.5, .5);
+}
+.tab-menu .son-box.on{
+	border-bottom: 2px solid #1388ff;
+}
+.iblock{
+	display: inline-block;
+}
+.gray{
+	color: #888;
+}
+.small-font{
+	font-size: .75rem;
+}
+.orange{
+	color: #ff6000;
+}
+.fr{
+	float: right;
+}
+.fl{
+	float: left;
+}
+.clearfix:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+  }
+
+.clearfix {
+  /* 触发 hasLayout */ 
+  zoom: 1; 
+  }
+.bg-white{
+	background: #fff;
+}
+.text-right{
+	text-align: right;
+}
+.footer{
+	text-align: center;
+	margin-top: 15px;
+	padding: 10px 0;
+}
+.footer label{
+	padding-left: 14px;
+    line-height: 36px;
+}
+.footer-btn{
+    margin-left: 70px;
+}
+.footer .big-btn{
+	margin: 0px 4px;
+	border: 1px solid #1076ff;
+	border-radius: 3px;
+	color: #1076ff;
+	font-size: .875rem;
+}
+.big-btn.bg-blue{
+	border: 1px solid #0072ff;
+	background: #1388ff;
+	color: #fff;
+}
+.gray-btn{
+	border: 1px solid #333;
+	color: #333;
+	display: inline-block;
+	line-height: 27px;
+	font-size: .75rem;
+	width: 70px;
+	text-align: center;
+	border-radius: 3px;
+}
+.gray-btn.active{
+	background: #ddd;
+}
+.big-btn.active{
+	background: #d0e7ff;
+}
+.bg-blue.active{
+	background: #006edc;
+}
+footer.footer{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}
+.footer-blank{
+	height: 71px;
+}
+/*提示框 开始*/
+.prompt .prompt-box{
+    text-align: center;
+    font-size: 0.93rem;
+    width: 62%;
+    padding: 100px 0 20px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 150px;
+    left:50%;
+    z-index: 1;
+    transform: translate(-50%,0);
+}
+.prompt .prompt-box:before{
+    content: '';
+    display: block;
+    width: 67px;
+    height: 68px;
+    background: url(/images/ico.png)  -63px -15px;
+    background-size:150px;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.prompt .modal-backdrop {
+    position: fixed;
+    background-color: #000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: .5;
+}
+/*提示框 结束*/
+
+.loading-box {
+    background: rgba(0, 0, 0, .6);
+    text-align: center;
+    z-index: 10001;
+    text-shadow: 1px 1px 2px #fff;
+    font-size: 14px;
+    width: 200px;
+    height: 50px;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    line-height: 50px;
+    border-radius: 5px;
+    text-shadow: 1px 1px 2px #000;
+    color: #fff;
+	margin-left: -100px;
+}
+.loading-box img {
+    vertical-align: middle;
+    width: 26px;
+    margin-right: 10px;
+}
+.show-alert{
+   width: 56%;
+   padding: 15px 0; 
+   background-color: #333333;
+   color: #fff;
+   text-align: center;
+   border-radius: 10px;
+   position: fixed;
+   bottom: 80px;
+    left:50%;
+    transform: translate(-50%,0);
+}
+.checkbox-ico{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #bababa;
+	border-radius: 2px;
+}
+.checkbox-ico.on{
+	border-color: #0c8ef4;
+	background: #0c8ef4;
+}
+.checkbox-ico.on:after{
+	content: '';
+	display: block;
+	width: 9px;
+	height: 7px;
+	width: 8px;
+	background: url(/images/ico.png) -118px -6px;
+    background-size: 150px;
+	margin: 1px 0 0 1px;
+}
+
+.data-empty{
+	text-align: center;
+	color: #888;
+	line-height: 50px;
+	font-size: .8rem;
+}
+//暂时把所有的css都写在同一个文件里吧。
+//
+//
+input{
+	height:30px;
+}

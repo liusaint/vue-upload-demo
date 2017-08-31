@@ -3,6 +3,7 @@ var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+// var px2rem = require('postcss-px2rem');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -41,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: "style-loader!css-loader!less-loader",
+        loader: "style-loader!css-loader!less-loader!postcss-loader",
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -68,5 +69,5 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 }
