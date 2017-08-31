@@ -227,6 +227,7 @@ html,body{
 	.pic-wrap{
 		width:80px;
 		text-align:center;
+		position:relative;
 		img{
 			width:100%;
 		}
@@ -234,6 +235,16 @@ html,body{
 			font-size:16px;
 			line-height:16px;
 			margin-top: 10px;
+		}
+		input{
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			opacity: 0;	
+			height:110px;
 		}
 	}
 }

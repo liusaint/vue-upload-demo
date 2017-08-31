@@ -1,35 +1,31 @@
 <template>
-	
-<!-- 		<input type="file" accept="image/*;capture=camera" @change='fileChange($event)' >直接调用相机（测试安卓可以，iphone还是有相册）
-		<br/>
-		<input type="file" multiple accept="image/*" @change='fileChange($event)'/>调用相册	 -->
 
+	<div class="flex-box choose-upload-type">
+			<!-- <input type="file" accept="image/*;capture=camera" @change='fileChange($event)' > -->
 
+			<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
 
+		<div class="placeholder"></div>
+		<div class="pic-wrap">
+			<img src="../images/photo.png" alt="">
+			<p>拍照上传</p>
 
-		<div class="flex-box choose-upload-type">
-			<div class="placeholder"></div>
-			<div class="pic-wrap">
-				<img src="../images/photo.png" alt="">
-				<p>拍照上传</p>
-			</div>
-			<div class="placeholder"></div>
-			<div class="pic-wrap">
-				<img src="../images/picture.png" alt="">
-				<p>相册选择</p>
-			</div>
-			<div class="placeholder"></div>
+			<input type="file" accept="image/*" capture="camera"  @change='fileChange($event)' >
 		</div>
+		<div class="placeholder"></div>
+		<div class="pic-wrap">
+			<img src="../images/picture.png" alt="">
+			<p>相册选择</p>
+			<input type="file" multiple accept="image/*" @change='fileChange($event)'/>
+		</div>
+		<div class="placeholder"></div>
+	</div>
 
-
-
-
-
-	</template>
-	<script>
-		export default {
-			methods:{
-				fileChange($event){
+</template>
+<script>
+	export default {
+		methods:{
+			fileChange($event){
 				//这里应该有个上传的过程。
 				var input = event.currentTarget;
 
