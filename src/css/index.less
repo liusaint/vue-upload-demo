@@ -206,8 +206,34 @@ footer.footer{
 
 
 //暂时把所有的css都写在同一个文件里吧。
-//
-//
-input{
-	height:30px;
+
+html,body{
+	height:100%;
+	background:#fff;
+}
+#app{
+	height:100%;
+}
+/*首页，一个flex布局*/
+.flex-box {
+    display: flex;
+}
+.choose-upload-type{
+	height:100%;
+	margin-top:168px;
+	.placeholder{
+		flex:1;		
+	}
+	.pic-wrap{
+		width:80px;
+		text-align:center;
+		img{
+			width:100%;
+		}
+		p{
+			font-size:16px;
+			line-height:16px;
+			margin-top: 10px;
+		}
+	}
 }
