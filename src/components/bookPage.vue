@@ -1,12 +1,17 @@
 	<template>
 
 		<!-- 第三个页面 选择记录本-->
-		<div class="page-wrap" >
-			选择记录本
-			<button @click="goBack">返回</button>	
-			<ul>
-				<li v-for="(item,index) in bookData" @click="chooseBook(item)">
-									{{item.name}}
+		<div class="" >
+			<!-- 选择记录本 -->
+			<!-- <button @click="goBack">返回</button> -->
+			<div class="top-bar bgwhite">
+				<i class="eln-ico left-arrow"  @click="goBack"></i>				
+				<div class="txt">选择记录本</div>
+				<i class="eln-ico right-search"></i>
+			</div>	
+			<ul class="bgwhite mt6">
+				<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
+					<span class="text">{{item.name}}</span>
 				</li>
 			</ul>
 		</div>

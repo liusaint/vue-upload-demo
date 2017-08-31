@@ -1,12 +1,20 @@
 	<template>
 
 		<!-- 第三个页面 选择记录本-->
-		<div class="page-wrap" >
-			选择实验
-			<button @click="goBack">返回</button>
-			<li v-for="(item,index) in expData" @click="chooseExp(item)">
-				{{item.name}}
-			</li>
+		<div>
+
+			<div class="top-bar bgwhite">
+				<i class="eln-ico left-arrow"  @click="goBack"></i>				
+				<div class="txt">选择实验记录</div>
+				<i class="eln-ico right-search"></i>
+			</div>	
+
+
+			<ul class="bgwhite mt6">
+				<li v-for="(item,index) in expData" @click="chooseExp(item)" class="choose-bar after-ico">
+					{{item.name}}
+				</li>
+			</ul>
 		</div>
 
 	</template>

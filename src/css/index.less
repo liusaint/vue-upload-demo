@@ -1,76 +1,76 @@
 @charset "UTF-8";
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    /*word-break:break-all;*/
-    word-wrap:break-word;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	/*word-break:break-all;*/
+	word-wrap:break-word;
 }
 *{
 	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 button{
 	background: none;
 	border: none;
 }
 input{
-    white-space:nowrap;
+	white-space:nowrap;
 }
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+	-webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 *{
-    background-repeat: no-repeat;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
+	background-repeat: no-repeat;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 ul,li,ol{
-    list-style: none;
+	list-style: none;
 }
 img{
-    border: none;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
+	border: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 body{
-    position: relative;
+	position: relative;
 	background: #e1e4eb;
 }
 .content{
-    min-height: 100%;
+	min-height: 100%;
 }
 a{
-    text-decoration: none;
-    border: none;
-    outline: none;
-    tap-highlight-color: rgba(0,0,0,0);
-    focus-ring-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-focus-ring-color: rgba(0, 0, 0, 0);
-    -moz-tap-highlight-color: rgba(0,0,0,0);
-    -moz-focus-ring-color: rgba(0, 0, 0, 0);
+	text-decoration: none;
+	border: none;
+	outline: none;
+	tap-highlight-color: rgba(0,0,0,0);
+	focus-ring-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-focus-ring-color: rgba(0, 0, 0, 0);
+	-moz-tap-highlight-color: rgba(0,0,0,0);
+	-moz-focus-ring-color: rgba(0, 0, 0, 0);
 }
 input,button{
-    outline: none;
+	outline: none;
 }
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Helvetica,sans-serif;
-    font-size: 16px;
-    color: #333;
-    text-align: left;
+	padding: 0;
+	margin: 0;
+	font-family: Helvetica,sans-serif;
+	font-size: 16px;
+	color: #333;
+	text-align: left;
 }
 
 .layout-box {
-    display: flex;
+	display: flex;
 }
 .layout-box .son-box {
-    flex: 1;
-    width: 100%;
-    position: relative;
+	flex: 1;
+	width: 100%;
+	position: relative;
 	color: #333;
 }
 .son-box.on {
@@ -114,7 +114,7 @@ body {
 	width: 44%;
 }
 .text-btn.active{
-    background: #ddd;
+	background: #ddd;
 }
 .blue-btn.active{
 	background: #cce5ff;
@@ -163,17 +163,17 @@ body {
 	float: left;
 }
 .clearfix:after{
-  content: "020"; 
-  display: block; 
-  height: 0; 
-  clear: both; 
-  visibility: hidden;  
-  }
+	content: "020"; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden;  
+}
 
 .clearfix {
-  /* 触发 hasLayout */ 
-  zoom: 1; 
-  }
+	/* 触发 hasLayout */ 
+	zoom: 1; 
+}
 .bg-white{
 	background: #fff;
 }
@@ -221,7 +221,7 @@ html,body{
 	background: #fff;
 }
 .flex-box {
-    display: flex;
+	display: flex;
 }
 .choose-upload-type{
 	height:100%;
@@ -270,6 +270,7 @@ html,body{
 .eln-ico{
 	background:url('../images/eln.png');
 	background-size:250px;	
+	display:inline-block;
 }
 .after-ico:after{
 	content:'';
@@ -331,19 +332,38 @@ html,body{
 }
 
 .choose-bar{
+
 	&.choosed-txt{
 		margin-left: 15px;	
 		border-top: 1px solid @borderColor;
 		padding-left: 21px;
-		height:40px;
-		line-height:40px;
+
 		border-bottom:none;
+		&:before{
+			content:'';
+			background:url('../images/eln.png');
+			background-size:250px;
+			display:inline-block;	
+
+			height:18px;
+			width:16px;
+			background-position:-22px -0px;
+			position:absolute;
+			top:50%;
+			left:0;
+			margin-top: -9px;
+
+		}
 	}
-	height:36px;
+	height:40px;
+	line-height:40px;
+	color:#333;
+	// height:36px;
 	font-size:12px;
-	line-height:36px;
+	// line-height:36px;
 	border-bottom: 1px solid @borderColor;
 	position:relative;
+	padding-left: 15px;
 	.text{
 		// width:100%;
 		display:block;
@@ -353,21 +373,7 @@ html,body{
 		white-space:nowrap;
 
 	}
-	&:before{
-		content:'';
-		background:url('../images/eln.png');
-		background-size:250px;
-		display:inline-block;	
-		
-		height:18px;
-		width:16px;
-		background-position:-22px -0px;
-		position:absolute;
-		top:50%;
-		left:0;
-		margin-top: -9px;
 
-	}
 	&:after{
 
 		height:11px;
@@ -391,3 +397,42 @@ body{
 }
 
 /*提交页*/
+
+/*顶上样式*/
+.top-bar{
+	height:44px;
+	line-height:44px;
+	border-bottom:1px solid @borderColor;
+	padding:0 15px;
+	position:relative;
+
+	.left-arrow{
+		background-position:-192px -3px;
+		height:14px;
+		width:8px;
+		// float: left;
+		vertical-align:middle;
+		position:absolute;
+		top:50%;
+		margin-top: -7px;
+	}
+	.right-search{
+		background-position:-207px -2px;
+		height:16px;
+		width:16px;
+		position:absolute;
+		top:50%;
+		margin-top: -8px;
+		right:15px;
+	}
+	.txt{
+		text-align:center;
+	}
+}
+
+.bgwhite{
+	background: #fff;
+}
+.mt6{
+	margin-top: 6px;
+}
