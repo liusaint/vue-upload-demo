@@ -20,7 +20,7 @@
 			</div>			
 			
 			<router-link to="/bookPage" tag='div' class="choosed-txt choose-bar after-ico">
-			<span class="text">{{chooseWord}} 111111111111111111111111111111111111111111111111111111111111</span></router-link>
+			<span class="text">{{chooseWord}}</span></router-link>
 
 			<div class="hr"></div>
 
@@ -39,7 +39,7 @@
 			computed: {
 				chooseWord () {
 					if(this.book.name && this.exp.name){
-						return this.book.name + '-' +'this.exp.name';
+						return this.book.name + '-' +this.exp.name;
 					}
 					return '选择记录本';
 				},
@@ -60,6 +60,36 @@
 					//直接这样删除不会有问题吗？
 					this.choosedImgArr.splice(index, 1);
 				},
+							fileChange($event){
+				//这里应该有个上传的过程。
+				var input = event.currentTarget;
+
+				var self = this;
+				//读取文件
+				if (input.files) {
+					for (var i = 0, fileLen = input.files.length; i < fileLen; i++) {
+						// var readed = 0;
+
+						(function(i) {
+							var file = input.files[i];
+							var reader = new FileReader();
+							reader.onload = function(e) {
+
+								self.$store.commit('addImg',{
+									src: e.target.result
+								})
+								// readed++;
+
+								}
+
+								reader.readAsDataURL(file);
+
+							})(i)
+
+						}
+
+					}
+				}
 
 			}
 
