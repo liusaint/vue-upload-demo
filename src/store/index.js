@@ -16,6 +16,14 @@ const mutations = {
 	},
 	addImg(state,img){
 		state.choosedImgArr.push(img);
+	},
+	//选择记录本
+	chooseBook(state,book){
+		state.book = book;
+	},
+	//选择实验
+	chooseExp(state,exp){
+		state.exp = exp;
 	}
 }
 

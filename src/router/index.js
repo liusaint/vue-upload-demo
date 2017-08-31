@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import uploadType from '@/components/chooseUploadType'
 import submitPage from '@/components/submitPage'
+import bookPage from '@/components/bookPage'
+import expPage from '@/components/expPage'
 
 Vue.use(Router)
 
@@ -17,6 +19,16 @@ export default new Router({
       path: '/submitPage',
       name: 'submitPage',
       component: submitPage
-    }
+    },
+   	{
+      path: '/bookPage',
+      name: 'bookPage',
+      component: bookPage
+    },
+    {
+    	path: '/expPage/:id',//传递记录本id;
+    	name: 'expPage',
+    	component: expPage
+    },
   ]
 })

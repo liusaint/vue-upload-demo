@@ -16,7 +16,9 @@
 				</li>
 			</ul>
 			<div class="choosed">{{book.name}} {{exp.name}}</div>
-			<span class="choose" @click="goBookPage">选择记录本</span>
+			<span class="choose" @click="">{{chooseWord}}</span>
+			<router-link to="/bookPage" tag='span'>User</router-link>
+
 		</div>
 
 	</template>
@@ -29,14 +31,31 @@
 
 				}
 			},
-			computed: mapState(['choosedImgArr','book','exp']),
+			computed: {
+				 chooseWord () {
+				 	if(this.book.name && this.exp.name){
+				 		return this.book.name + '-' +'this.exp.name';
+				 	}
+				 	return '选择记录本';
+				 },
+				 ...mapState(['choosedImgArr','book','exp']),
+			},		
+
 			methods:{
 				cancel(){
-					this.$router.push('/');
+					//回首页
+					this.$router.replace('/');
+					//清空所有数据。todo
 				},
 				submit(){
 
 				},
+				//删除一个图片
+				delPic: function(index) {
+					//直接这样删除不会有问题吗？
+					this.choosedImgArr.splice(index, 1);
+				},
+
 			}
 
 		}
