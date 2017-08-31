@@ -206,6 +206,7 @@ footer.footer{
 
 
 //暂时把所有的css都写在同一个文件里吧。
+@borderColor:#dce0e6;
 
 html,body{
 	height:100%;
@@ -215,6 +216,10 @@ html,body{
 	height:100%;
 }
 /*首页，一个flex布局*/
+.upload-page-wrap{
+	height:100%;
+	background: #fff;
+}
 .flex-box {
     display: flex;
 }
@@ -248,3 +253,141 @@ html,body{
 		}
 	}
 }
+/*首页，一个flex布局*/
+
+/*提交页*/
+.con-wrap{
+	padding: 15px;
+	textarea{
+		width:100%;
+		height:90px;
+		resize: none;
+		border:none;
+		font-size:12px;
+	}
+	padding-bottom: 5px;
+}
+.eln-ico{
+	background:url('../images/eln.png');
+	background-size:250px;	
+}
+.after-ico:after{
+	content:'';
+	background:url('../images/eln.png');
+	background-size:250px;
+	display:inline-block;		
+}
+
+.up-imgs{
+	margin-top: 15px;
+	@imgWidth:65px;
+	li{
+		margin-right: 10px;	
+		margin-bottom: 10px;
+		float: left;
+		position:relative;
+
+	}
+	.up-img{
+		height:@imgWidth;
+		width:@imgWidth;
+		vertical-align : bottom;
+	}
+	.del-pic-ico{
+		@icoWidth:15px;
+		position:absolute;
+		right:-@icoWidth/2;
+		top:-@icoWidth/2;
+		height:@icoWidth;
+		width:@icoWidth;
+		background-position:0 0 ;
+	}
+	.upload-li{
+		height:@imgWidth;
+		width:@imgWidth;
+		border:1px solid @borderColor;
+		&:after{
+			content:'';
+			display:block;
+			height:34px;
+			width:34px;
+			background:url('../images/eln.png');
+			background-size:250px;
+			background-position:-6px -28px;
+			margin:15px auto;
+		}
+		input{
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			opacity: 0;
+		}
+
+	}
+
+}
+
+.choose-bar{
+	&.choosed-txt{
+		margin-left: 15px;	
+		border-top: 1px solid @borderColor;
+		padding-left: 21px;
+		height:40px;
+		line-height:40px;
+		border-bottom:none;
+	}
+	height:36px;
+	font-size:12px;
+	line-height:36px;
+	border-bottom: 1px solid @borderColor;
+	position:relative;
+	.text{
+		// width:100%;
+		display:block;
+		margin-right: 26px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space:nowrap;
+
+	}
+	&:before{
+		content:'';
+		background:url('../images/eln.png');
+		background-size:250px;
+		display:inline-block;	
+		
+		height:18px;
+		width:16px;
+		background-position:-22px -0px;
+		position:absolute;
+		top:50%;
+		left:0;
+		margin-top: -9px;
+
+	}
+	&:after{
+
+		height:11px;
+		width:8px;
+		background-position:-54px -3px;
+		position:absolute;
+		top:50%;
+		right:16px;
+		margin-top: -5.5px;
+
+	}
+}
+.page-wrap{
+	background:#fff;
+}
+body{
+	background:#e8ecf2;
+}
+.hr{
+	border-bottom:1px solid @borderColor;
+}
+
+/*提交页*/

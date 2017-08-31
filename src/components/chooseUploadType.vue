@@ -1,5 +1,5 @@
 <template>
-
+<div class="upload-page-wrap">
 	<div class="flex-box choose-upload-type">
 			<!-- <input type="file" accept="image/*;capture=camera" @change='fileChange($event)' > -->
 
@@ -19,6 +19,7 @@
 			<input type="file" multiple accept="image/*" @change='fileChange($event)'/>
 		</div>
 		<div class="placeholder"></div>
+	</div>
 	</div>
 
 </template>
