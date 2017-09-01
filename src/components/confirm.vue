@@ -56,10 +56,11 @@
 			margin-top: -100px;
 			left: 50%;
 			margin-left: -100px;
+			font-size:14px;
 
 			.txt{
 				padding:24px 10px;
-				font-size:14px;
+		
 				line-height:16px;
 				color:#333;
 				text-align: center;		
