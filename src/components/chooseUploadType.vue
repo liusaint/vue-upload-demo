@@ -20,7 +20,7 @@
 		</div>
 		<div class="placeholder"></div>
 	</div>
-	<modal-tip :modalOpt="modalOpt"></modal-tip>
+	<!-- <modal-tip :modalOpt="modalOpt"></modal-tip> -->
 	</div>
 
 </template>

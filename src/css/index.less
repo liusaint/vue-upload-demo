@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+@blue:#1388ff;
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video{
 	margin: 0;
 	padding: 0;
@@ -102,7 +104,7 @@ body {
 	line-height: 24px;
 	border: 1px solid #666;
 	border-radius: 3px;
-	font-size: .8rem;
+	// font-size: .8rem;
 	color: #666;
 }
 .textarea-head .blue-btn{
@@ -211,6 +213,7 @@ footer.footer{
 html,body{
 	height:100%;
 	background:#fff;
+	body:12px;
 }
 #app{
 	height:100%;
@@ -553,4 +556,7 @@ body{
 
 .border-r{
 	border-right: 1px solid @borderColor;
+}
+.blue{
+	color:@blue;
 }

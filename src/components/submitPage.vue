@@ -1,11 +1,13 @@
 	<template>
 		<!-- 第二个页面 发布页面-->
 		<div class="page-wrap">
-			<div class="main-top">
+
+			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancel'>取消</button>
-				<button class="submit" @click="submit">发布</button>
-			</div>
-			<div class="con-wrap">
+				<button class="submit fr blue " @click="submit">发布</button>
+			</div>	
+
+			<div class="con-wrap bgwhite">
 				<textarea class="remark" placeholder='填写备注信息' v-model="remark"></textarea>
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
@@ -24,7 +26,7 @@
 
 			<div class="hr"></div>
 
-			<confirm :confirmOpt = "confirmOpt"></confirm>
+			<!-- <confirm :confirmOpt = "confirmOpt"></confirm> -->
 
 		</div>
 
@@ -116,7 +118,8 @@
 		}
 	</script>
 	<style scoped>
-		body{
-			background:#e8ecf2;
+		.submit{
+			margin-top: 16px;
 		}
 	</style>
+
