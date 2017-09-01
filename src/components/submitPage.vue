@@ -24,17 +24,31 @@
 
 			<div class="hr"></div>
 
+			<confirm :confirmOpt = "confirmOpt"></confirm>
+
 		</div>
 
 	</template>
 	<script>
 		import { mapState } from 'vuex'
+		import confirm from './confirm.vue'
 		export default {
+
 			data(){
 				return {
 					remark:'',
-
+					confirmOpt:{
+						show:true,
+						txt:'确定上传图片',
+						cancelTxt:'取消',
+						cancelFn:this.cancelUpload.bind(this),
+						confirmTxt:'确定',
+						confirmFn:this.submit.bind(this)
+					}
 				}
+			},
+			components:{
+				confirm
 			},
 			computed: {
 				chooseWord () {
@@ -52,8 +66,11 @@
 					this.$router.replace('/');
 					//清空所有数据。todo
 				},
+				cancelUpload(){
+					console.log('取消上传');
+				},
 				submit(){
-
+					console.log('上传图片');
 				},
 				//删除一个图片
 				delPic: function(index) {
@@ -90,6 +107,9 @@
 
 					}
 				}
+
+			},
+			created(){
 
 			}
 
