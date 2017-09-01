@@ -20,11 +20,23 @@
 		</div>
 		<div class="placeholder"></div>
 	</div>
+	<modal-tip :modalOpt="modalOpt"></modal-tip>
 	</div>
 
 </template>
 <script>
+import modalTip from './modalTip.vue'
 	export default {
+		data(){
+			return {
+				modalOpt:{
+					show:true,
+					type:'success',
+					txt:'上传成功',
+				}
+			}
+		},
+		components:{modalTip},
 		methods:{
 			fileChange($event){
 				//这里应该有个上传的过程。

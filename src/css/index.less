@@ -428,11 +428,99 @@ body{
 	.txt{
 		text-align:center;
 	}
+	.input-wrap{
+		margin-left:20px;
+		border:1px solid @borderColor;
+		height:30px;
+		line-height:30px;
+		border-radius:15px;
+		padding:0;
+		overflow:hidden;
+		position:relative;
+		top:6px;
+		font-size:0;
+		input{
+			font-size:12px;
+			margin:0;
+			width:100%;
+			height:30px;
+			border:none;
+			padding-left:30px;
+			padding-right: 30px;
+			line-height:30px;
+		}
+		&:after{
+			height:13px;
+			width:12px;
+			background-position:-115px 0;
+			position:absolute;
+			top:50%;
+			margin-top: -5px;
+			left:10px;
+			z-index:1;
+		}
+		.del-input{
+			background-position:-135px -2px;
+			@height:16px;
+			width:@height;
+			.absolute-center(@height);
+			z-index:1;
+			right:8px;
+		}
+	}
 }
-
+//mixin
+.absolute-center(@height){
+	height:@height;
+	top:50%;
+	margin-top: -@height/2+1px;
+	position:absolute;
+}
 .bgwhite{
 	background: #fff;
 }
 .mt6{
 	margin-top: 6px;
+}
+
+//一个白板。绝对定位不会撑开窗口。
+.absolute-white{
+	background:#fff;
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+}
+
+.search-his{
+	padding:15px;
+	.title{
+		line-height:1em;		
+	}
+	.del-his{
+		background-position:-173px -3px;
+		height:13px;
+		width:12px;
+		float:right;
+	}
+	.con{
+		margin-top: 15px;
+	}
+	.his-item{
+		@height:30px;
+		height:@height;
+		line-height:@height;
+		text-align:center;
+		float:left;
+		white-space:nowrap;
+		max-width: 100%;
+		overflow:hidden;
+		border-radius:@height/2;
+		margin-right: 10px;
+		background:#eef1f4;
+		padding:0 10px;
+		margin-bottom: 8px;
+		text-overflow: ellipsis;
+	}
 }

@@ -3,11 +3,11 @@
 		<!-- 第三个页面 选择记录本-->
 		<div class="" >
 			<!-- 选择记录本 -->
-			<!-- <button @click="goBack">返回</button> -->
 			<div class="top-bar bgwhite">
 				<i class="eln-ico left-arrow"  @click="goBack"></i>				
 				<div class="txt">选择记录本</div>
 				<i class="eln-ico right-search"></i>
+				<router-link to="/searchPage" class="eln-ico right-search" tag="i"></router-link>
 			</div>	
 			<ul class="bgwhite mt6">
 				<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
@@ -23,7 +23,7 @@
 			data(){
 				return {
 					remark:'',
-					bookData:{},
+					bookData:[],
 				}
 			},
 			computed: {
