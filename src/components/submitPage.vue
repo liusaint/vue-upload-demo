@@ -27,6 +27,7 @@
 			<div class="hr"></div>
 
 			<!-- <confirm :confirmOpt = "confirmOpt"></confirm> -->
+			<preview></preview>
 
 		</div>
 
@@ -34,6 +35,7 @@
 	<script>
 		import { mapState } from 'vuex'
 		import confirm from './confirm.vue'
+		import preview from './preview.vue'
 		export default {
 
 			data(){
@@ -50,7 +52,7 @@
 				}
 			},
 			components:{
-				confirm
+				confirm,preview
 			},
 			computed: {
 				chooseWord () {
