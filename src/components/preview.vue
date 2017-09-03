@@ -2,61 +2,62 @@
 	<div class="slider" v-show="showPreview">
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<div v-for="(item, index) in choosedImgArr" class="swiper-slide">
+				<div v-for="(item, index) in choosedImgArr" class="swiper-slide" height="1000">
+					<!-- <div class="swiper-mask"></div> -->
 					<div class="top-bar preview-bar">
 						<i class="after-ico left-arrow-txt" @click="back">返回</i> 
 						<div class="txt">{{index+1}}/{{imgLen}}</div>
 						<i class="eln-ico right-search" @click="delPic(index)"></i> 
 					</div>
 					<div class="slider-img-wrap">
-						<img class="slider-img" :src="item.src" alt="">
+						<!-- 这一段可能以后还会用得着，可以看一看。 -->
+						<div class="bg-img relative" :style="{ backgroundImage: 'url(' + item.src + ')' }" >
+							<div class="swiper-mask"></div>
+							<img class="slider-img" :src="item.src" alt="" ></div>
+						</div>
 					</div>
 				</div>
+
 			</div>
-			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
 		</div>
-	</div>
-</template>
+	</template>
 
-<script>
-	import { mapState } from 'vuex'
-	export default{
-		props:['index'],
-		data () {
-			return {
-				swiper:'',
-			}
-		},
-		created () {
-			var self = this;
-			console.log('create submit')
-			this.$nextTick(function(){
+	<script>
+		import { mapState } from 'vuex'
+		export default{
+			props:['index'],
+			data () {
+				return {
+					swiper:'',
+				}
+			},
+			created () {
+				var self = this;
+				console.log('create submit')
+				this.$nextTick(function(){
 
-			})
+				})
 
-		},
-		methods: {
+			},
+			methods: {
 			//初始化initswiper
 			initSwiper(){
 				var self = this;
 				self.$nextTick(function(){
 
 					self.swiper && self.swiper.destroy();
-					self.swiper = new window.Swiper('.swiper-container', {
-						pagination: '.swiper-pagination',
-						paginationClickable: true,
+					self.swiper = new window.Swiper('.swiper-container', {	
+
 						spaceBetween: 0,
 						centeredSlides: true,		
 						autoplayDisableOnInteraction: false,
 						observer: true,
 						lazyLoading: true,
 						resistanceRatio: 0,
-						autoplay:4000,
+						autoplay:40000,
 						initialSlide:self.index,
 					})
 					
-
 				})
 
 			},
@@ -80,54 +81,71 @@
 						this.initSwiper();
 					}
 				},
-		},
-		computed: {
-			...mapState(['choosedImgArr','showPreview']),
-			imgLen(){
-				return this.choosedImgArr.length;
-			}
-		},
-		watch:{
-			showPreview(){
-
-				if(this.showPreview === false){
-					return;
-				}
-
-				this.initSwiper();
-				
 			},
+			computed: {
+				...mapState(['choosedImgArr','showPreview']),
+				imgLen(){
+					return this.choosedImgArr.length;
+				}
+			},
+			watch:{
+				showPreview(){
+
+					if(this.showPreview === false){
+						return;
+					}
+
+					this.initSwiper();
+
+				},
+
+			}
+		}
+	</script>
+	<style>
+		@import '../../node_modules/.3.3.1@swiper/dist/css/swiper.min.css';
+		.slider{
+			position: absolute;
+			left: 0;
+			top: 0;	
+			height: 100%;
+			width: 100%;
+		}
+		.swiper-container{
+			background: #000;
+			width: 100%;
+			height: 100%;
+		}
+		.preview-bar{
+			color: #fff;
+			background: #000;
+			border: none;
+		}
+		.slider-img-wrap{
+			height: calc(100% - 44px);
+			width: 100%;
+			overflow-y:auto;
+			-webkit-overflow-scrolling: touch;
 
 		}
-	}
-</script>
-<style>
-	@import '../../node_modules/.4.0.0-beta.2@swiper/dist/css/swiper.css';
-	.slider{
-		position: absolute;
-		left: 0;
-		top: 0;	
-		height: 100%;
-		width: 100%;
-	}
-	.swiper-container{
-		background: #000;
-		width: 100%;
-		height: 100%;
-	}
-	.preview-bar{
-		color: #fff;
-		background: #000;
-		border: none;
-	}
-	.slider-img-wrap{
-		height: calc(100% - 44px);
-		width: 100%;
-		overflow: auto;
-	}
-	.slider-img{
-		width: 100%;
-		position: relative;
-		/*top: 44px;*/
-	}
-</style>
+		.slider-img{
+			width: 100%;
+			-webkit-overflow-scrolling: touch;
+			visibility: hidden;
+			 /*把里面的图片隐藏起来。它只是为了撑开外面*/
+		}
+		/*占位，让我们的滑动不会直接滑动到图片上*/
+		.swiper-mask{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			opacity: 1;
+		}
+		.bg-img{
+			width: 100%;
+			background-size: 100%;
+		}
+	</style>
