@@ -8,6 +8,7 @@ const state = {
 	choosedImgArr:[],//选中的图片,
 	book:{},//选中的记录本
 	exp:{},//选中的实验
+	showPreview:false,//是否预览
 }
 
 const mutations = {
@@ -24,6 +25,9 @@ const mutations = {
 	//选择实验
 	chooseExp(state,exp){
 		state.exp = exp;
+	},
+	togglePreview(state,status){
+		state.showPreview = status;
 	}
 }
 

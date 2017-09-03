@@ -12,7 +12,7 @@
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
 						<i @click="delPic(index)" class="eln-ico del-pic-ico"></i>
-						<img :src="item.src" alt="" height="100" width="100" class="up-img">				
+						<img :src="item.src" alt="" height="100" width="100" class="up-img" @click="showPreview(index)">				
 					</li>
 					<li class="upload-li">
 						<input type="file" multiple accept="image/*" @change='fileChange($event)'/>
@@ -27,7 +27,7 @@
 			<div class="hr"></div>
 
 			<!-- <confirm :confirmOpt = "confirmOpt"></confirm> -->
-			<preview></preview>
+			<preview :index="previewIndex"></preview>
 
 		</div>
 
@@ -48,7 +48,8 @@
 						cancelFn:this.cancelUpload.bind(this),
 						confirmTxt:'确定',
 						confirmFn:this.submit.bind(this)
-					}
+					},	
+					previewIndex:0,			
 				}
 			},
 			components:{
@@ -81,7 +82,7 @@
 					//直接这样删除不会有问题吗？
 					this.choosedImgArr.splice(index, 1);
 				},
-							fileChange($event){
+				fileChange($event){
 				//这里应该有个上传的过程。
 				var input = event.currentTarget;
 
@@ -110,6 +111,11 @@
 						}
 
 					}
+				},
+				//显示预览。定位到点击的图片。
+				showPreview(index){
+					this.previewIndex = index;
+					this.$store.commit('togglePreview',true);
 				}
 
 			},
