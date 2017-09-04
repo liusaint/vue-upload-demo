@@ -27,7 +27,7 @@
 
 	</template>
 	<script>
-		import ajax from '../js/ajax'
+		import {ajax,localSave}  from '../js/common'
 		import { mapState } from 'vuex'
 		export default {
 			data(){
