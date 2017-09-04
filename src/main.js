@@ -10,6 +10,12 @@ import store from './store/'
 import Swiper from 'swiper'
 window.Swiper = Swiper
 
+/*element上传插件*/
+import ElUpload from 'element-upload'
+// import 'element-theme-default/dist/upload.css'
+
+Vue.use(ElUpload)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
