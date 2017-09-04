@@ -8,7 +8,8 @@ const state = {
 	choosedImgArr:[],//选中的图片,
 	book:{},//选中的记录本
 	exp:{},//选中的实验
-	showPreview:false,//是否预览
+	showPreview:false,//是否预览,
+	uid:17449, //用户id
 }
 
 const mutations = {

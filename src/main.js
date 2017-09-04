@@ -10,6 +10,11 @@ import store from './store/'
 import Swiper from 'swiper'
 window.Swiper = Swiper
 
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+
+
 /*element上传插件*/
 import ElUpload from 'element-upload'
 // import 'element-theme-default/dist/upload.css'
@@ -17,6 +22,12 @@ import ElUpload from 'element-upload'
 Vue.use(ElUpload)
 
 Vue.config.productionTip = false
+
+import { InfiniteScroll } from 'mint-ui';
+
+Vue.use(InfiniteScroll);
+
+
 
 /* eslint-disable no-new */
 new Vue({

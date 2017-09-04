@@ -1,48 +1,50 @@
 <template>
-<div class="upload-page-wrap">
-	<div class="flex-box choose-upload-type">
+	<div class="upload-page-wrap">
+		<div class="flex-box choose-upload-type">
 			<!-- <input type="file" accept="image/*;capture=camera" @change='fileChange($event)' > -->
 
 			<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
 
-		<div class="placeholder"></div>
-		<div class="pic-wrap">
-			<img src="../images/photo.png" alt="">
-			<p>拍照上传</p>
+			<div class="placeholder"></div>
+			<div class="pic-wrap">
+				<img src="../images/photo.png" alt="">
+				<p>拍照上传</p>
 
-			<el-upload
-			capture="camera"
-			accept="image/*"
-			class="upload-input"
-			ref="upload_camera"
-			:on-success="uploadOk"
-			:on-error="uploadErr"
-			action="http://dev.ineln.integle.com/?r=upload/upload-file"
-			:auto-upload="true"></el-upload>
+				<el-upload
+				capture="camera"
+				accept="image/*"
+				class="upload-input"
+				ref="upload_camera"
+				:on-success="uploadOk"
+				:on-error="uploadErr"
+
+				action="http://dev.ineln.integle.com/?r=upload/upload-file"
+				:auto-upload="true"></el-upload>
 
 
-			<!-- <input type="file" accept="image/*" capture="camera"  @change='fileChange($event)' > -->
+				<!-- <input type="file" accept="image/*" capture="camera"  @change='fileChange($event)' > -->
+			</div>
+			<div class="placeholder"></div>
+			<div class="pic-wrap">
+				<img src="../images/picture.png" alt="">
+				<p>相册选择</p>
+				<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
+				<el-upload
+				capture="camera"
+				accept="image/*"
+				class="upload-input"
+				multiple
+				ref="upload_file"
+				action="http://dev.ineln.integle.com/?r=upload/upload-file"
+				:on-success="uploadOk"
+				:on-error="uploadErr"
+
+				:auto-upload="true"></el-upload>
+
+			</div>
+			<div class="placeholder"></div>
 		</div>
-		<div class="placeholder"></div>
-		<div class="pic-wrap">
-			<img src="../images/picture.png" alt="">
-			<p>相册选择</p>
-			<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
-			<el-upload
-			capture="camera"
-			accept="image/*"
-			class="upload-input"
-			multiple
-			ref="upload_file"
-			action="http://dev.ineln.integle.com/?r=upload/upload-file"
-			:on-success="uploadOk"
-			:on-error="uploadErr"
-			:auto-upload="true"></el-upload>
-
-		</div>
-		<div class="placeholder"></div>
-	</div>
-	<!-- <modal-tip :modalOpt="modalOpt"></modal-tip> -->
+		<!-- <modal-tip :modalOpt="modalOpt"></modal-tip> -->
 
 
 
@@ -51,7 +53,7 @@
 
 </template>
 <script>
-import modalTip from './modalTip.vue'
+	import modalTip from './modalTip.vue'
 	export default {
 		data(){
 			return {
@@ -65,14 +67,17 @@ import modalTip from './modalTip.vue'
 		components:{modalTip},
 		methods:{
 			uploadOk(response,file){
-console.log(arguments,1);
-console.log(arguments[1].name,arguments[1].url)
-alert(JSON.stringify(response))
+				console.log(arguments,1);
+				console.log(arguments[1].name,arguments[1].url)
+				alert(JSON.stringify(response))
+				this.$router.push('/submitPage');
 			},
 			uploadErr(err,file){
 				alert(JSON.stringify(err))
-console.log(arguments,2);
+				console.log(arguments,2);
+				this.$router.push('/submitPage');
 			},
+
 			fileChange($event){
 				//这里应该有个上传的过程。
 				var input = event.currentTarget;
