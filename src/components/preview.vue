@@ -103,7 +103,7 @@
 		}
 	</script>
 	<style>
-		@import '../../node_modules/.3.3.1@swiper/dist/css/swiper.min.css';
+		@import '../../node_modules/swiper/dist/css/swiper.min.css';
 		.slider{
 			position: absolute;
 			left: 0;

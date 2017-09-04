@@ -22,7 +22,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 
 ###to do
-* 搜索页面切图。
-* 提交页面大图查看和删除，以及滑动。
-* 空数据页面。
+
 * 滚动加载与搜索的逻辑。
+* 文件上传
+* 如何把一个vue-cli项目放到实际的php为服务端的项目中去。
