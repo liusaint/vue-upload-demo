@@ -21,8 +21,12 @@ npm run build --report
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-###to do
+### to do
 
-* 滚动加载与搜索的逻辑。
-* 文件上传
+* 空白的逻辑。
+* 文件上传 多个图片上传只发一个请求。
+* 图标的问题。预览页面的两个白色图标。
 * 如何把一个vue-cli项目放到实际的php为服务端的项目中去。
+* loading的问题
+* 提交。
+* uid的获取。
