@@ -3,8 +3,8 @@
 		<div class="page-wrap">
 
 			<div class="top-bar bgwhite">
-				<button class="cancel" @click='cancel'>取消</button>
-				<button class="submit fr blue " @click="submit">发布</button>
+				<button class="cancel" @click='cancelConfirm'>取消</button>
+				<button class="submit fr blue " @click="submitConfirm">发布</button>
 			</div>	
 
 			<div class="con-wrap bgwhite">
@@ -12,10 +12,20 @@
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
 						<i @click="delPic(index)" class="eln-ico del-pic-ico"></i>
-						<img :src="item.src" alt="" height="100" width="100" class="up-img" @click="showPreview(index)">				
+						<img :src="'http://'+item.img_url" alt="" height="100" width="100" class="up-img" @click="showPreview(index)">				
 					</li>
 					<li class="upload-li">
-						<input type="file" multiple accept="image/*" @change='fileChange($event)'/>
+						<el-upload
+						capture="camera"
+						accept="image/*"
+						class="upload-input"
+						multiple
+						ref="upload_file"
+						action="http://dev.wechat.integle.com/upload/upload-file"
+						:on-success="uploadOk"
+						:on-error="uploadErr"
+
+						:auto-upload="true"></el-upload>
 					</li>
 				</ul>
 
@@ -26,7 +36,7 @@
 
 			<div class="hr"></div>
 
-			<!-- <confirm :confirmOpt = "confirmOpt"></confirm> -->
+			<confirm :confirmOpt = "confirmOpt"></confirm>
 			<preview :index="previewIndex"></preview>
 
 		</div>
@@ -34,6 +44,7 @@
 	</template>
 	<script>
 		import { mapState } from 'vuex'
+		import {ajax,localSave}  from '../js/common'
 		import confirm from './confirm.vue'
 		import preview from './preview.vue'
 		export default {
@@ -42,7 +53,7 @@
 				return {
 					remark:'',
 					confirmOpt:{
-						show:true,
+						show:false,
 						txt:'确定上传图片',
 						cancelTxt:'取消',
 						cancelFn:this.cancelUpload.bind(this),
@@ -66,16 +77,74 @@
 			},		
 
 			methods:{
-				cancel(){
+				cancelConfirm(){
+					this.confirmOpt = {
+						show:true,
+						txt:'退出此次编辑',
+						cancelTxt:'取消',
+						cancelFn:this.cancelUpload.bind(this),
+						confirmTxt:'退出',
+						confirmFn:this.exitEdit.bind(this)
+					}
+
+				},
+				//退出此次编辑
+				exitEdit(){
+					this.confirmOpt.show = false;
 					//回首页
 					this.$router.replace('/');
 					//清空所有数据。todo
 				},
 				cancelUpload(){
-					console.log('取消上传');
+					this.confirmOpt.show = false;
+				},
+				//确定要上传图片吗？
+				submitConfirm(){
+					this.confirmOpt = {
+						show:true,
+						txt:'确定上传图片',
+						cancelTxt:'取消',
+						cancelFn:this.cancelUpload.bind(this),
+						confirmTxt:'确定',
+						confirmFn:this.submit.bind(this)
+					}
 				},
 				submit(){
-					console.log('上传图片');
+
+					var exp_id = this.exp.exp_page;
+					var self = this;
+					if(!this.remark){
+						alert('请填写备注');
+						this.confirmOpt.show = false;
+						return;
+					}
+					if(this.choosedImgArr.length == 0){
+						alert('请上传图片');
+						this.confirmOpt.show = false;
+						return;
+					}
+					if(!exp_id){
+						alert('请选择实验')
+						this.confirmOpt.show = false;
+						return;
+					}
+
+					ajax({
+						url: 'http://dev.wechat.integle.com/eln/save-img',
+						method: 'post',
+						data:{
+							uid:this.uid,
+							exp_id:	exp_id,//是这一个参数吗？
+							img_data:this.choosedImgArr,				
+						},
+						callback: function (data) {
+
+							if(1 == data.status){
+								//成功
+								self.confirmOpt.show = false;				
+							}
+						}
+					})
 				},
 				//删除一个图片
 				delPic: function(index) {
@@ -112,6 +181,12 @@
 
 					}
 				},
+				uploadOk(response,file){
+					if(1==response.status){
+						this.$store.commit('addImg',response.data)	
+					}
+				},
+
 				//显示预览。定位到点击的图片。
 				showPreview(index){
 					this.previewIndex = index;
@@ -128,6 +203,9 @@
 	<style scoped>
 		.submit{
 			margin-top: 16px;
+		}
+		.el-upload__files{
+			display: none;
 		}
 	</style>
 

@@ -67,15 +67,18 @@
 		components:{modalTip},
 		methods:{
 			uploadOk(response,file){
-				console.log(arguments,1);
-				console.log(arguments[1].name,arguments[1].url)
-				alert(JSON.stringify(response))
-				this.$router.push('/submitPage');
+				if(1==response.status){
+					this.$store.commit('addImg',response.data)
+					this.$router.push('/submitPage');
+				}
+
+				// alert(JSON.stringify(response))
+
 			},
 			uploadErr(err,file){
 				alert(JSON.stringify(err))
 				console.log(arguments,2);
-				this.$router.push('/submitPage');
+				// this.$router.push('/submitPage');
 			},
 
 			fileChange($event){

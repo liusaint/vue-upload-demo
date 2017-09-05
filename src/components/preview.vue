@@ -11,9 +11,9 @@
 					</div>
 					<div class="slider-img-wrap">
 						<!-- 这一段可能以后还会用得着，可以看一看。 -->
-						<div class="bg-img relative" :style="{ backgroundImage: 'url(' + item.src + ')' }" >
+						<div class="bg-img relative" :style="{ backgroundImage: 'url(http://' + item.img_url + ')' }" >
 							<div class="swiper-mask"></div>
-							<img class="slider-img" :src="item.src" alt="" ></div>
+							<img class="slider-img" :src="'http://'+item.img_url" alt="" ></div>
 						</div>
 					</div>
 				</div>
