@@ -13,7 +13,7 @@ export function ajax(params) {
 		method: params.method || 'get',
 		url: params.url,
 		method: params.method,
-		params: params.data || {}
+		body: params.data || {}
 	})
 	.then((response) => {
 		let data = response.data

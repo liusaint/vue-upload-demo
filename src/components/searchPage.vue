@@ -23,19 +23,11 @@
 
 		<!-- <no-data></no-data> -->
 
-
-
-		<ul class="bgwhite mt6"
-		v-show="search_word"
-		v-infinite-scroll="getList"
-		infinite-scroll-disabled="loading"
-		infinite-scroll-distance="10">
-		<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
-			<span class="text">{{item.name}}</span>
-		</li>
-	</ul>
-
-
+		<ul class="bgwhite mt6"	v-show="search_word">
+			<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
+				<span class="text">{{item.name}}</span>
+			</li>
+		</ul>
 
 </div>
 
@@ -50,8 +42,6 @@
 				search_word:'',
 			bookHis:[],//记录本查询历史
 			bookData:{},
-			page:1,
-			loading:false,
 		}
 	},
 	computed: {
@@ -87,8 +77,6 @@
 			// 	name: 6 + 'book',
 			// 	id: 6
 			// }];
-			this.page = 1;
-			this.loading = false;
 			this.getList();
 		},
 		searchHis(item){
@@ -106,23 +94,16 @@
 			this.leading = true;
 			ajax({
 				url: 'http://dev.wechat.integle.com/eln/book-list',
-				method: 'GET',
+				method: 'post',
 				data:{
-					page:this.page,		
 					uid:this.uid,
 					search_word:this.search_word					
 				},
 				callback: function (data) {
 
 					self.loading = false;
-					if(1 == data.status){
-						if(1 == self.page){
-							self.bookData = data.data.booklist;
-						}else{
-
-							self.bookData = self.bookData.concat(data.data.booklist)
-						}
-						self.page++;								
+					if(1 == data.status){				
+							self.bookData = data.data.booklist;								
 					}
 
 				}
@@ -153,6 +134,7 @@
 		'甲苯甲苯甲苯',
 		'甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯',
 		'甲苯甲苯甲苯',];
+
 	}
 }
 </script>

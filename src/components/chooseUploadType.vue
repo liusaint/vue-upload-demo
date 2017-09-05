@@ -18,7 +18,7 @@
 				:on-success="uploadOk"
 				:on-error="uploadErr"
 
-				action="http://dev.ineln.integle.com/?r=upload/upload-file"
+				action="http://dev.wechat.integle.com/upload/upload-file"
 				:auto-upload="true"></el-upload>
 
 
@@ -35,7 +35,7 @@
 				class="upload-input"
 				multiple
 				ref="upload_file"
-				action="http://dev.ineln.integle.com/?r=upload/upload-file"
+				action="http://dev.wechat.integle.com/upload/upload-file"
 				:on-success="uploadOk"
 				:on-error="uploadErr"
 
