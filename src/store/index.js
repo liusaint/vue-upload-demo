@@ -29,6 +29,9 @@ const mutations = {
 	},
 	togglePreview(state,status){
 		state.showPreview = status;
+	},
+	clearExp(state){
+		state.exp = {};
 	}
 }
 

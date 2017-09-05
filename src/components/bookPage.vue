@@ -36,7 +36,8 @@
 
 			methods:{
 				chooseBook(item){
-					this.$store.commit('chooseBook',item);					
+					this.$store.commit('chooseBook',item);	
+					this.$store.commit('clearExp');					
 					this.$router.push('/expPage/'+item.id);
 				},
 				goBack(){

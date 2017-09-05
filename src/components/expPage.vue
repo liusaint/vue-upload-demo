@@ -7,6 +7,8 @@
 				<i class="eln-ico left-arrow"  @click="goBack"></i>				
 				<div class="txt">选择实验记录</div>
 				<i class="eln-ico right-search"></i>
+				<!-- 在这里面用$route -->
+				<router-link :to="'/searchPageExp/'+$route.params.id" class="eln-ico right-search" tag="i"></router-link>
 			</div>	
 
 			<ul class="bgwhite mt6"
@@ -64,10 +66,11 @@
 				getList(){
 
 					var self = this;
-					this.leading = true;
+
 					if(this.dataOver){
 						return;
 					}
+					this.leading = true;
 					ajax({
 						url: 'http://dev.wechat.integle.com/eln/exp-list',
 						method: 'post',

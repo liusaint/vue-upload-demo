@@ -57,8 +57,8 @@
 			},
 			computed: {
 				chooseWord () {
-					if(this.book.name && this.exp.name){
-						return this.book.name + '-' +this.exp.name;
+					if(this.book.name && this.exp.caled_name){
+						return this.book.name + ' ' +this.exp.caled_name;
 					}
 					return '选择记录本';
 				},

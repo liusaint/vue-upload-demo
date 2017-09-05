@@ -6,6 +6,7 @@ import submitPage from '@/components/submitPage'
 import bookPage from '@/components/bookPage'
 import expPage from '@/components/expPage'
 import searchPage from '@/components/searchPage'
+import searchPageExp from '@/components/searchPageExp'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/searchPage',//传递记录本id;
       name: 'searchPage',
       component: searchPage
+    },
+    {
+      path: '/searchPageExp/:id',//传递记录本id;
+      name: 'searchPageExp',
+      component: searchPageExp
     },
   ]
 })
