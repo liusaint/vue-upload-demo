@@ -81,9 +81,7 @@
 				// this.$router.push('/submitPage');
 			},
 			setUid(){
-				var search = location.search;
-				var uidStr = search.split('?')[1];
-				var uid = uidStr.split('=')[1];
+				var uid = location.search.match(/uid=(\d+)/)[1];
 				this.$store.commit('setUid',parseInt(uid));
 			},
 

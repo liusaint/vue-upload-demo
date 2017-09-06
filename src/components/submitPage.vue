@@ -8,7 +8,7 @@
 			</div>	
 
 			<div class="con-wrap bgwhite">
-				<textarea class="remark" placeholder='填写备注信息' v-model="remark"></textarea>
+				<textarea class="remark" placeholder='填写备注信息' v-model="localRemark" @input="changeRemark"></textarea>
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
 						<i @click="delPic(index)" class="eln-ico del-pic-ico"></i>
@@ -51,7 +51,6 @@
 
 			data(){
 				return {
-					remark:'',
 					confirmOpt:{
 						show:false,
 						txt:'确定上传图片',
@@ -60,7 +59,8 @@
 						confirmTxt:'确定',
 						confirmFn:this.submit.bind(this)
 					},	
-					previewIndex:0,			
+					previewIndex:0,
+					localRemark:''			
 				}
 			},
 			components:{
@@ -73,7 +73,7 @@
 					}
 					return '选择记录本';
 				},
-				...mapState(['choosedImgArr','book','exp','uid']),
+				...mapState(['choosedImgArr','book','exp','uid','remark']),
 			},		
 
 			methods:{
@@ -213,11 +213,14 @@
 				showPreview(index){
 					this.previewIndex = index;
 					this.$store.commit('togglePreview',true);
+				},
+				changeRemark(){
+					this.$store.commit('changeRemark',this.localRemark);
 				}
 
 			},
 			created(){
-
+				this.localRemark = this.remark;
 			}
 
 		}

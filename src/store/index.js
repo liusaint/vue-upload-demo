@@ -10,6 +10,7 @@ const state = {
 	exp:{},//选中的实验
 	showPreview:false,//是否预览,
 	uid:'', //用户id
+	remark:'',
 }
 
 const mutations = {
@@ -42,6 +43,9 @@ const mutations = {
 		state.book={};
 		state.exp={};
 		state.showPreview=false;
+	},
+	changeRemark(state,remark){
+		state.remark = remark;
 	}
 }
 
