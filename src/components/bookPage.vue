@@ -56,7 +56,8 @@
 						callback: function (data) {
 
 							if(1 == data.status){
-									self.bookData = data.data.booklist;							
+								var parsedData = JSON.parse(data.data);
+								self.bookData = parsedData.booklist;								
 							}
 						}
 					})

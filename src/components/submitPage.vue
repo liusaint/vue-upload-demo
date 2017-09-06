@@ -17,7 +17,7 @@
 					<li class="upload-li">
 						<el-upload
 						capture="camera"
-						accept="image/*"
+						accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif,image/wmf,image/tif"
 						class="upload-input"
 						multiple
 						ref="upload_file"
@@ -209,6 +209,7 @@
 				uploadOk(response,file){
 					if(1==response.status){
 						this.$store.commit('addImg',response.data)	
+						
 					}
 				},
 

@@ -79,8 +79,11 @@ export default {
         callback: function(data) {
 
           self.loading = false;
+
+          var parsedData = JSON.parse(data.data);
+
           if (1 == data.status) {
-            self.bookData = data.data.booklist;
+            self.bookData = parsedData.booklist;
             if (self.bookData.length == 0) {
               self.showNoData = true;
             }

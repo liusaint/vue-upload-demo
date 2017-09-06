@@ -78,13 +78,16 @@
 							page:this.page,		
 							uid:this.uid,
 							book_id:this.book_id,
-							limit:20					
+							limit:30					
 						},
 						callback: function (data) {
 
 							self.loading = false;
+
+							var parsedData = JSON.parse(data.data);
+							
 							if(1 == data.status){
-								var expList = data.data.expList;
+								var expList = parsedData.expList;
 								if(1 == self.page){
 									self.expData = expList;
 								}else{
@@ -96,9 +99,9 @@
 									self.page++;
 
 									//如果没有出现滚动条。说明数据没加载满。那么需要继续加载。这段代码还要再测试
-									if (!(document.body.style.overflow!="hidden"&&document.body.scroll!="no"&&document.body.scrollHeight>document.body.offsetHeight)){										self.getList();
+									// if (!(document.body.style.overflow!="hidden"&&document.body.scroll!="no"&&document.body.scrollHeight>document.body.offsetHeight)){										self.getList();
 
-									}	
+									// }	
 								}
 						
 							}
