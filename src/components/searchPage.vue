@@ -42,34 +42,17 @@ export default {
   methods: {
     clearInput() {
       this.search_word = '';
+
     },
     delHis() {
-      //清除历史
+      //删除local本地存储
+      localSave('bookHis','');
       this.bookHis = [];
     },
     //搜索记录本。
     searchBook() {
-      // //初始化，拿数据
-      // this.bookData = [{
-      // 	name: 1 + 'book',
-      // 	id: 1
-      // }, {
-      // 	name: 2 + 'book',
-      // 	id: 2
-      // }, {
-      // 	name: 3 + 'book',
-      // 	id: 3
-      // }, {
-      // 	name: 4 + 'book',
-      // 	id: 4
-      // }, {
-      // 	name: 5 + 'book',
-      // 	id: 5
-      // }, {
-      // 	name: 6 + 'book',
-      // 	id: 6
-      // }];
       this.getList();
+      this.saveHisWord();
     },
     searchHis(item) {
       this.search_word = item;
@@ -81,14 +64,13 @@ export default {
       //没有关键字的时候不搜索。
       if (!this.search_word) {
         this.bookData = [];
-
         return;
       }
       self.showNoData = false;
       this.leading = true;
       self.bookData = [];
       ajax({
-        url: 'http://dev.wechat.integle.com/eln/book-list',
+        url: '/eln/book-list',
         method: 'post',
         data: {
           uid: this.uid,
@@ -115,24 +97,34 @@ export default {
       this.$router.go(-1);
     },
     getHisWord() {
-
+      var bookHis = localSave('bookHis');
+      if(!bookHis){
+        bookHis = [];
+      }
+      this.bookHis = bookHis;
     },
     saveHisWord() {
-
+      if(!this.search_word){
+        return;
+      }
+      var bookHis = localSave('bookHis');
+      if(!bookHis){
+        bookHis = [];
+      }else{
+        bookHis = JSON.parse(bookHis);
+      }
+      //不在里面
+      if(bookHis.indexOf(this.search_word) < 0){
+        bookHis.push(this.search_word);
+        localSave('bookHis',JSON.stringify(bookHis));
+      }
+      this.bookHis = bookHis;
     }
   },
   components: { noData },
   created() {
     // 进入页面的时候从local拿存储的最近历史
-    this.bookHis = ['甲23苯',
-      '苏格工在',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-    ];
+    this.getHisWord();
     this.showNoData = false;
     this.search_word = '';
   }

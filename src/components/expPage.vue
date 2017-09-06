@@ -72,7 +72,7 @@
 					}
 					this.leading = true;
 					ajax({
-						url: 'http://dev.wechat.integle.com/eln/exp-list',
+						url: '/eln/exp-list',
 						method: 'post',
 						data:{
 							page:this.page,		

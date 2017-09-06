@@ -18,7 +18,7 @@
 				:on-success="uploadOk"
 				:on-error="uploadErr"
 
-				action="http://dev.wechat.integle.com/upload/upload-file"
+				action="/upload/upload-file"
 				:auto-upload="true"></el-upload>
 
 
@@ -35,7 +35,7 @@
 				class="upload-input"
 				multiple
 				ref="upload_file"
-				action="http://dev.wechat.integle.com/upload/upload-file"
+				action="/upload/upload-file"
 				:on-success="uploadOk"
 				:on-error="uploadErr"
 
@@ -69,7 +69,7 @@
 			uploadOk(response,file){
 				if(1==response.status){
 					this.$store.commit('addImg',response.data)
-					this.$router.push('/submitPage');
+					this.$router.replace('/submitPage');
 				}
 
 				// alert(JSON.stringify(response))
@@ -79,6 +79,12 @@
 				alert(JSON.stringify(err))
 				console.log(arguments,2);
 				// this.$router.push('/submitPage');
+			},
+			setUid(){
+				var search = location.search;
+				var uidStr = search.split('?')[1];
+				var uid = uidStr.split('=')[1];
+				this.$store.commit('setUid',parseInt(uid));
 			},
 
 			fileChange($event){
@@ -123,7 +129,9 @@
 					var $el = self.$refs.upload_camera.$el;
 					$el.getElementsByTagName('input')[0].setAttribute('capture','camera');
 				})
-				
+				//重置数据
+				this.$store.commit('resetStore');
+				this.setUid();
 			}
 		}
 	</script>

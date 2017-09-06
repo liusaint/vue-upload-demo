@@ -21,7 +21,7 @@
 						class="upload-input"
 						multiple
 						ref="upload_file"
-						action="http://dev.wechat.integle.com/upload/upload-file"
+						action="/upload/upload-file"
 						:on-success="uploadOk"
 						:on-error="uploadErr"
 
@@ -73,7 +73,7 @@
 					}
 					return '选择记录本';
 				},
-				...mapState(['choosedImgArr','book','exp']),
+				...mapState(['choosedImgArr','book','exp','uid']),
 			},		
 
 			methods:{
@@ -111,14 +111,18 @@
 				},
 				submit(){
 
-					var exp_id = this.exp.exp_page;
+					var exp_id = this.exp.id;
 					var self = this;
+					var imgLen = this.choosedImgArr.length;
+					var imgData = [];
+					var imgItem;
+
 					if(!this.remark){
 						alert('请填写备注');
 						this.confirmOpt.show = false;
 						return;
 					}
-					if(this.choosedImgArr.length == 0){
+					if(0 == imgLen){
 						alert('请上传图片');
 						this.confirmOpt.show = false;
 						return;
@@ -129,19 +133,37 @@
 						return;
 					}
 
+					
+					for (var i = 0; i < this.choosedImgArr.length; i++) {
+						imgItem = this.choosedImgArr[i];
+						imgData.push({
+							'dep_path':imgItem.dep_path,
+							'save_name':imgItem.save_name,
+							'file_name':imgItem.file_name,
+							'remark':this.remark,
+						})
+					}
+
 					ajax({
-						url: 'http://dev.wechat.integle.com/eln/save-img',
+						url: '/eln/save-img',
 						method: 'post',
 						data:{
 							uid:this.uid,
 							exp_id:	exp_id,//是这一个参数吗？
-							img_data:this.choosedImgArr,				
+							img_data:imgData,
+							remark:this.remark				
 						},
 						callback: function (data) {
 
 							if(1 == data.status){
 								//成功
-								self.confirmOpt.show = false;				
+								self.confirmOpt.show = false;
+								self.$router.replace('');
+								//操作成功，在后面的页面弹出操作
+								setTimeout(function(){
+									alert(1);
+								}, 10);
+
 							}
 						}
 					})

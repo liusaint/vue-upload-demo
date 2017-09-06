@@ -9,7 +9,7 @@ const state = {
 	book:{},//选中的记录本
 	exp:{},//选中的实验
 	showPreview:false,//是否预览,
-	uid:17449, //用户id
+	uid:'', //用户id
 }
 
 const mutations = {
@@ -32,6 +32,16 @@ const mutations = {
 	},
 	clearExp(state){
 		state.exp = {};
+	},
+	setUid(state,uid){
+		state.uid = uid;
+	},
+	//回到首页，重置vuex所有数据
+	resetStore(state){
+		state.choosedImgArr=[];
+		state.book={};
+		state.exp={};
+		state.showPreview=false;
 	}
 }
 

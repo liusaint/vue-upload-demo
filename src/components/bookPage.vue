@@ -48,7 +48,7 @@
 					var self = this;
 
 					ajax({
-						url: 'http://dev.wechat.integle.com/eln/book-list',
+						url: '/eln/book-list',
 						method: 'post',
 						data:{
 							uid:this.uid,					

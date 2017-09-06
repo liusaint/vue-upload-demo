@@ -48,35 +48,18 @@ export default {
       this.search_word = '';
     },
     delHis() {
-      //清除历史
+      //删除local本地存储
+      localSave('expHis','');
       this.expHis = [];
     },
     //搜索记录本。
     searchExp() {
-      // //初始化，拿数据
-      // this.expData = [{
-      // 	name: 1 + 'book',
-      // 	id: 1
-      // }, {
-      // 	name: 2 + 'book',
-      // 	id: 2
-      // }, {
-      // 	name: 3 + 'book',
-      // 	id: 3
-      // }, {
-      // 	name: 4 + 'book',
-      // 	id: 4
-      // }, {
-      // 	name: 5 + 'book',
-      // 	id: 5
-      // }, {
-      // 	name: 6 + 'book',
-      // 	id: 6
-      // }];
+
       this.page = 1;
       this.loading = false;
       this.dataOver = false;
       this.getList();
+      this.saveHisWord();
     },
     searchHis(item) {
       this.search_word = item;
@@ -114,7 +97,7 @@ export default {
       this.leading = true;
       self.showNoData = false;
       ajax({
-        url: 'http://dev.wechat.integle.com/eln/exp-list',
+        url: '/eln/exp-list',
         method: 'post',
         data: {
           page: this.page,
@@ -163,24 +146,34 @@ export default {
       this.$router.go(-1);
     },
     getHisWord() {
-
+      var expHis = localSave('expHis');
+      if(!expHis){
+        expHis = [];
+      }
+      this.expHis = expHis;
     },
     saveHisWord() {
-
+      if(!this.search_word){
+        return;
+      }
+      var expHis = localSave('expHis');
+      if(!expHis){
+        expHis = [];
+      }else{
+        expHis = JSON.parse(expHis);
+      }
+      //不在里面
+      if(expHis.indexOf(this.search_word) < 0){
+        expHis.push(this.search_word);
+        localSave('expHis',JSON.stringify(expHis));
+      }
+      this.expHis = expHis;
     }
   },
   components: { noData },
   created() {
     // 进入页面的时候从local拿存储的最近历史
-    this.expHis = ['甲23苯',
-      '苏格工在',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-      '甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯甲苯',
-      '甲苯甲苯甲苯',
-    ];
+  this.getHisWord();
     //初始化，拿数据
     this.loading = false;
     this.page = 1;
