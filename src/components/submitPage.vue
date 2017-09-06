@@ -4,7 +4,8 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">发布</button>
+				<button class="submit fr blue " @click="submitConfirm" >发布</button>
+				<!-- v-show="exp.id && choosedImgArr.length && book.id" -->
 			</div>	
 
 			<div class="con-wrap bgwhite">
@@ -43,6 +44,7 @@
 
 	</template>
 	<script>
+		import { Toast } from 'mint-ui';
 		import { mapState } from 'vuex'
 		import {ajax,localSave}  from '../js/common'
 		import confirm from './confirm.vue'
@@ -120,17 +122,19 @@
 
 
 					if(0 == imgLen){
-						alert('请上传图片');
+					
+						Toast('请上传图片');
+					
 						this.confirmOpt.show = false;
 						return;
 					}
 					if(!book_id){
-						alert('请选择记录本')
+						Toast('请选择记录本')
 						this.confirmOpt.show = false;
 						return;
 					}
 					if(!exp_id){
-						alert('请选择实验')
+						Toast('请选择实验')
 						this.confirmOpt.show = false;
 						return;
 					}
@@ -164,7 +168,7 @@
 								self.$router.replace('');
 								//操作成功，在后面的页面弹出操作
 								setTimeout(function(){
-									alert(1);
+									Toast(1);
 								}, 10);
 
 							}
@@ -230,11 +234,13 @@
 		}
 	</script>
 	<style scoped>
+	@import '../../node_modules/mint-ui/lib/toast/style.css';
 		.submit{
 			margin-top: 16px;
 		}
 		.el-upload__files{
 			display: none;
 		}
+
 	</style>
 
