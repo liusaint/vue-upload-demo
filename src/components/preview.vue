@@ -32,21 +32,24 @@
 				}
 			},
 			created () {
-				var self = this;
-				console.log('create submit')
-				this.$nextTick(function(){
-
-				})
 
 			},
 			methods: {
 			//初始化initswiper
 			initSwiper(){
 				var self = this;
+				var initialSlide = self.index;
+
+				//先跳到目标去。然后再重新初始化。不然可能会有错。
+				if(self.swiper){
+					self.swiper.slideTo(initialSlide,0,false);					
+				}
 				self.$nextTick(function(){
 
-					self.swiper && self.swiper.destroy();
-					self.swiper = new window.Swiper('.swiper-container', {	
+			
+					console.log(self.index,'init');
+					self.swiper&&self.swiper.destroy();
+					window.swiper = self.swiper = new window.Swiper('.swiper-container', {	
 
 						spaceBetween: 0,
 						centeredSlides: true,		
@@ -55,8 +58,9 @@
 						lazyLoading: true,
 						resistanceRatio: 0,
 						autoplay:40000,
-						initialSlide:self.index,
+						initialSlide:initialSlide,
 					})
+
 					
 				})
 
@@ -73,7 +77,9 @@
 					}else{
 						index = 0;
 					}
+					console.log(this.index,index);
 					this.index = index;
+					console.log(this.index,index);
 					//图片删除完之后，隐藏之
 					if(this.imgLen == 0){
 						this.$store.commit('togglePreview',false);
@@ -96,6 +102,8 @@
 					}
 
 					this.initSwiper();
+
+
 
 				},
 
