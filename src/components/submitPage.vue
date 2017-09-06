@@ -4,7 +4,7 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm">发布</button>
+				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">发布</button>
 			</div>	
 
 			<div class="con-wrap bgwhite">
@@ -112,18 +112,20 @@
 				submit(){
 
 					var exp_id = this.exp.id;
+					var book_id = this.book.id;
 					var self = this;
 					var imgLen = this.choosedImgArr.length;
 					var imgData = [];
 					var imgItem;
 
-					if(!this.remark){
-						alert('请填写备注');
+
+					if(0 == imgLen){
+						alert('请上传图片');
 						this.confirmOpt.show = false;
 						return;
 					}
-					if(0 == imgLen){
-						alert('请上传图片');
+					if(!book_id){
+						alert('请选择记录本')
 						this.confirmOpt.show = false;
 						return;
 					}
@@ -132,6 +134,7 @@
 						this.confirmOpt.show = false;
 						return;
 					}
+				
 
 					
 					for (var i = 0; i < this.choosedImgArr.length; i++) {

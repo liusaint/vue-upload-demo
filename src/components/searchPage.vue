@@ -18,7 +18,7 @@
     <no-data v-show="search_word && showNoData"></no-data>
     <ul class="bgwhite mt6" v-show="search_word">
       <li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
-        <span class="text">{{item.name}}</span>
+        <span class="text">{{calBookName(item)}}</span>
       </li>
     </ul>
   </div>
@@ -46,7 +46,7 @@ export default {
     },
     delHis() {
       //删除local本地存储
-      localSave('bookHis','');
+      localSave('bookHis', '');
       this.bookHis = [];
     },
     //搜索记录本。
@@ -98,28 +98,37 @@ export default {
     },
     getHisWord() {
       var bookHis = localSave('bookHis');
-      if(!bookHis){
+      if (!bookHis) {
         bookHis = [];
-      }
+      }else{
+      	bookHis = JSON.parse(bookHis);
+      }      
       this.bookHis = bookHis;
     },
     saveHisWord() {
-      if(!this.search_word){
+      if (!this.search_word) {
         return;
       }
       var bookHis = localSave('bookHis');
-      if(!bookHis){
+      if (!bookHis) {
         bookHis = [];
-      }else{
+      } else {
         bookHis = JSON.parse(bookHis);
       }
       //不在里面
-      if(bookHis.indexOf(this.search_word) < 0){
+      if (bookHis.indexOf(this.search_word) < 0) {
         bookHis.push(this.search_word);
-        localSave('bookHis',JSON.stringify(bookHis));
+        localSave('bookHis', JSON.stringify(bookHis));
       }
       this.bookHis = bookHis;
-    }
+    },
+    //计算记录本名
+    calBookName(book) {
+      var res = 'N' + (new Date(book.create_time)).getFullYear().toString().slice(2) + book.code + '（' + book.name + '）';
+      //把计算后的结果保存一下。
+      book.caled_name = res;
+      return res;
+    },
   },
   components: { noData },
   created() {

@@ -13,7 +13,7 @@
 
 			<ul class="bgwhite mt6">
 				<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
-					<span class="text">{{item.name}}</span>
+					<span class="text">{{calBookName(item)}}</span>
 				</li>
 			</ul>
 
@@ -31,7 +31,7 @@
 				}
 			},
 			computed: {
-				 ...mapState(['book','exp','uid']),
+				...mapState(['book','exp','uid']),
 			},		
 
 			methods:{
@@ -61,6 +61,14 @@
 						}
 					})
 				},
+				//计算记录本名
+				calBookName(book){
+					var res = 'N' + (new Date(book.create_time)).getFullYear().toString().slice(2) + book.code +'（'+book.name+'）';
+					//把计算后的结果保存一下。
+					book.caled_name = res;
+					return res;
+				},
+
 			},
 			created(){
 				//初始化，拿数据

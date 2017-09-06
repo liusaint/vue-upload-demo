@@ -15,5 +15,11 @@
         FastClick.attach(document.body)
       }, false)
     }
+
+    //微信右上角菜单隐藏
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    	WeixinJSBridge&&WeixinJSBridge.call('hideOptionMenu');
+    });
+
   </script>
 </html>

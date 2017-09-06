@@ -3,7 +3,7 @@
     <div class="top-bar bgwhite">
       <i class="eln-ico left-arrow" @click="goBack"></i>
       <div class="input-wrap after-ico">
-        <input type="text" placeholder="请输入记录本名称" v-model="search_word" @input="searchExp">
+        <input type="text" placeholder="请输入实验标题、关键字和实验编号" v-model="search_word" @input="searchExp">
         <i class="del-input eln-ico" @click="clearInput" v-show="search_word"></i>
       </div>
     </div>
@@ -58,6 +58,7 @@ export default {
       this.page = 1;
       this.loading = false;
       this.dataOver = false;
+      this.expData = [];//清空个数据先。
       this.getList();
       this.saveHisWord();
     },
@@ -149,6 +150,8 @@ export default {
       var expHis = localSave('expHis');
       if(!expHis){
         expHis = [];
+      }else{
+        expHis = JSON.parse(expHis);
       }
       this.expHis = expHis;
     },
