@@ -86,4 +86,8 @@
 			}
 		}
 
+		.modal-wrap{
+			z-index: 4;
+		}
+
 	</style>

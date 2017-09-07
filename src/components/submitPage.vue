@@ -12,7 +12,7 @@
 				<textarea class="remark" placeholder='填写备注信息' v-model="localRemark" @input="changeRemark" maxlength="100"></textarea>
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
-						<i @click="delPic(index)" class="eln-ico del-pic-ico"></i>
+						<i @click="confirmDelPic(index)" class="eln-ico del-pic-ico"></i>
 						<img :src="'http://'+item.img_url" alt="" height="100" width="100" class="up-img" @click="showPreview(index)">				
 					</li>
 					<li class="upload-li">
@@ -58,7 +58,7 @@
 						txt:'确定上传',
 						showOhters:true,
 						cancelTxt:'取消',
-						cancelFn:this.cancelUpload.bind(this),
+						cancelFn:this.cancelFn.bind(this),
 						confirmTxt:'确定',
 						confirmFn:this.submit.bind(this)
 					},	
@@ -86,7 +86,7 @@
 						txt:'退出此次编辑',
 						showOhters:false,
 						cancelTxt:'取消',
-						cancelFn:this.cancelUpload.bind(this),
+						cancelFn:this.cancelFn.bind(this),
 						confirmTxt:'退出',
 						confirmFn:this.exitEdit.bind(this)
 					}
@@ -99,7 +99,8 @@
 					this.$router.replace('/');
 					//清空所有数据。todo
 				},
-				cancelUpload(){
+				//隐藏确认弹窗
+				cancelFn(){
 					this.confirmOpt.show = false;
 				},
 				//确定要上传图片吗？
@@ -109,7 +110,7 @@
 						txt:'确认上传？',
 						showOhters:true,
 						cancelTxt:'取消',
-						cancelFn:this.cancelUpload.bind(this),
+						cancelFn:this.cancelFn.bind(this),
 						confirmTxt:'确定',
 						confirmFn:this.submit.bind(this)
 					}
@@ -180,10 +181,22 @@
 						}
 					})
 				},
+				confirmDelPic(index){
+					this.confirmOpt = {
+						show:true,
+						txt:'确认删除图片吗？',
+						showOhters:false,
+						cancelTxt:'取消',
+						cancelFn:this.cancelFn.bind(this),
+						confirmTxt:'确定',
+						confirmFn:this.delPic.bind(this,index)
+					}
+				},
 				//删除一个图片
 				delPic: function(index) {
 					//直接这样删除不会有问题吗？
 					this.choosedImgArr.splice(index, 1);
+					this.confirmOpt.show = false;
 				},
 				fileChange($event){
 				//这里应该有个上传的过程。

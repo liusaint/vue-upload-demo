@@ -7,7 +7,7 @@
 					<div class="top-bar preview-bar">
 						<i class="after-ico left-arrow-txt" @click="back">返回</i> 
 						<div class="txt">{{index+1}}/{{imgLen}}</div>
-						<i class="eln-ico right-del" @click="delPic(index)"></i> 
+						<i class="eln-ico right-del" @click="confirmDelPic(index)"></i> 
 					</div>
 					<div class="slider-img-wrap">
 						<!-- 这一段可能以后还会用得着，可以看一看。 -->
@@ -19,20 +19,26 @@
 				</div>
 
 			</div>
+			<confirm :confirmOpt = "confirmOpt"></confirm>
 		</div>
 	</template>
 
 	<script>
 		import { mapState } from 'vuex'
+		import confirm from './confirm.vue'
 		export default{
 			props:['index'],
 			data () {
 				return {
 					swiper:'',
+					confirmOpt:{},
 				}
 			},
 			created () {
 
+			},
+			components:{
+				confirm
 			},
 			methods: {
 			//初始化initswiper
@@ -68,6 +74,22 @@
 			back(){				
 				this.$store.commit('togglePreview',false);
 			},
+			confirmDelPic(index){
+				this.confirmOpt = {
+					show:true,
+					txt:'确认删除图片吗？',
+					showOhters:false,
+					cancelTxt:'取消',
+					cancelFn:this.cancelFn.bind(this),
+					confirmTxt:'确定',
+					confirmFn:this.delPic.bind(this,index)
+				}
+			},
+				//隐藏确认弹窗
+				cancelFn(){
+					this.confirmOpt.show = false;
+				},
+
 				//删除一个图片
 				delPic:function(index) {
 					//直接这样删除不会有问题吗？
@@ -77,15 +99,15 @@
 					}else{
 						index = 0;
 					}
-					console.log(this.index,index);
+
 					this.index = index;
-					console.log(this.index,index);
 					//图片删除完之后，隐藏之
 					if(this.imgLen == 0){
 						this.$store.commit('togglePreview',false);
 					}else{
 						this.initSwiper();
 					}
+					this.confirmOpt.show = false;
 				},
 			},
 			computed: {
