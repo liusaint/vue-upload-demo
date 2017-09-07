@@ -6,12 +6,11 @@
 			<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
 
 			<div class="placeholder"></div>
-			<div class="pic-wrap">
+			<div class="pic-wrap" >
 				<img src="../images/photo.png" alt="">
 				<p>拍照上传</p>
 
-				<el-upload
-				capture="camera"
+				<el-upload				
 				accept="image/*"
 				class="upload-input"
 				ref="upload_camera"
@@ -25,7 +24,7 @@
 				<!-- <input type="file" accept="image/*" capture="camera"  @change='fileChange($event)' > -->
 			</div>
 			<div class="placeholder"></div>
-			<div class="pic-wrap">
+			<div class="pic-wrap" >
 				<img src="../images/picture.png" alt="">
 				<p>相册选择</p>
 				<!-- <input type="file" multiple accept="image/*" @change='fileChange($event)'/> -->
@@ -38,8 +37,8 @@
 				action="/upload/upload-file"
 				:on-success="uploadOk"
 				:on-error="uploadErr"
-
-				:auto-upload="true"></el-upload>
+				:auto-upload="true" >
+				</el-upload>
 
 			</div>
 			<div class="placeholder"></div>
@@ -71,15 +70,20 @@
 					this.$store.commit('addImg',response.data)
 					this.$router.replace('/submitPage');
 				}
-
-				// alert(JSON.stringify(response))
-
 			},
 			uploadErr(err,file){
 				alert(JSON.stringify(err))
 				console.log(arguments,2);
 				// this.$router.push('/submitPage');
 			},
+			// triggerCamera(event){
+			// 	var $el = this.$refs.upload_camera.$el;
+			// 	$el.getElementsByTagName('input')[0].click();
+			// },
+			// triggerBook(event){
+			// 	var $el = this.$refs.upload_file.$el;
+			// 		$el.getElementsByTagName('input')[0].click();
+			// },
 			setUid(){
 				var uid = location.search.match(/uid=(\d+)/)[1];
 				this.$store.commit('setUid',parseInt(uid));
