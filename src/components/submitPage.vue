@@ -26,6 +26,7 @@
 						:on-success="uploadOk"
 						:on-error="uploadErr"
 						:on-progress = 'uploadProgress'
+						:before-upload = 'fileCheck'
 						:auto-upload="true"></el-upload>
 					</li>
 				</ul>
@@ -76,7 +77,7 @@
 					}
 					return '选择记录本';
 				},
-				...mapState(['choosedImgArr','book','exp','uid','remark']),
+				...mapState(['choosedImgArr','book','exp','uid','remark','uploadingCount']),
 			},		
 
 			methods:{
@@ -103,6 +104,28 @@
 				cancelFn(){
 					this.confirmOpt.show = false;
 				},
+							//上传之前的文件检查。最多上传9个文件。文件不能大于10mb。
+			//解决方案是每个文件上传，就在上传中的数量加1。
+			//需要判断已上传的数量与上传中的数量的和。
+			fileCheck(file){
+
+				const MAX_SIZE = 1024 * 1024 * 10;
+				if(file.size >= MAX_SIZE ){
+					Toast('文件不能超过10MB');
+					return false;
+				}
+	
+				//上传中的数量。+ 已上传的数量　
+				if(this.uploadingCount + this.choosedImgArr.length> 8){
+					Toast('最多上传9个文件');
+					return false;
+				}
+
+				//上传中，数量+1.
+				this.$store.commit('uploading',1);
+
+			},
+
 				//确定要上传图片吗？
 				submitConfirm(){
 					this.confirmOpt = {
@@ -230,6 +253,8 @@
 				},
 				uploadOk(response,file){
 					this.$store.commit('changeLoading',false);
+									//上传中，数量-1.
+				this.$store.commit('uploading',-1);
 					if(1==response.status){
 						this.$store.commit('addImg',response.data);					
 					}else{
@@ -237,6 +262,8 @@
 					}
 				},
 				uploadErr(err,file){
+									//上传中，数量-1.
+				this.$store.commit('uploading',-1);
 					this.$store.commit('changeLoading',false);
 				},
 				uploadProgress(event, file, fileList){
@@ -259,7 +286,7 @@
 		}
 	</script>
 	<style scoped>
-	@import '../../node_modules/mint-ui/lib/toast/style.css';
+	
 		.submit{
 			margin-top: 16px;
 			line-height: 1em;

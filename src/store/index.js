@@ -13,6 +13,7 @@ const state = {
 	remark:'',
 	showLoading:false,
 	showModalTip:false,
+	uploadingCount:0,//上传中的文件数量
 }
 
 const mutations = {
@@ -47,6 +48,7 @@ const mutations = {
 		state.showPreview=false;
 		state.remark ='';
 		state.showLoading = false;
+		state.uploadingCount = 0;
 	},
 	changeRemark(state,remark){
 		state.remark = remark;
@@ -63,6 +65,9 @@ const mutations = {
 			},3000)
 		}
 	},
+	uploading(state,num){
+		state.uploadingCount = state.uploadingCount + num;
+	}
 }
 
 const actions = {

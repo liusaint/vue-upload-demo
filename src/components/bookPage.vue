@@ -1,21 +1,18 @@
 	<template>
 
-		<!-- 第三个页面 选择记录本-->
+		<!-- 第三个页面 选择记录本-->	
 		<div class="" >
-			<!-- 选择记录本 -->
-			<div class="top-bar bgwhite">
-				<i class="eln-ico left-arrow"  @click="goBack"></i>				
-				<div class="txt">选择记录本</div>				
+			<!-- 选择记录本 -->	
+			<div class="top-bar bgwhite"> <i class="eln-ico left-arrow"  @click="goBack"></i>
+				<div class="txt">选择记录本</div>
 				<router-link to="/searchPage" class="eln-ico right-search" tag="i"></router-link>
-			</div>	
-
+			</div>
 
 			<ul class="bgwhite mt6">
 				<li v-for="(item,index) in bookData" @click="chooseBook(item)" class="choose-bar after-ico">
 					<span class="text">{{calBookName(item)}}</span>
 				</li>
 			</ul>
-
 
 		</div>
 
@@ -25,60 +22,60 @@
 		import {ajax,localSave}  from '../js/common'
 		import { mapState } from 'vuex'
 		export default {
-			data(){
-				return {
-					bookData:[],
-				}
-			},
-			computed: {
-				...mapState(['book','exp','uid']),
-			},		
-
-			methods:{
-				chooseBook(item){
-					this.$store.commit('chooseBook',item);	
-					this.$store.commit('clearExp');					
-					this.$router.push('/expPage/'+item.id);
+			data() {
+					return {
+						bookData: [],
+					}
 				},
-				goBack(){
-					this.$router.go(-1);
+				computed: {
+					...mapState(['book', 'exp', 'uid']),
 				},
-				getList(){
 
-					var self = this;
+				methods: {
+					chooseBook(item) {
+						this.$store.commit('chooseBook', item);
+						this.$store.commit('clearExp');
+						this.$router.push('/expPage/' + item.id);
+					},
+					goBack() {
+						this.$router.go(-1);
+					},
+					getList() {
 
-					ajax({
-						url: '/eln/book-list',
-						method: 'post',
-						data:{
-							uid:this.uid,					
-						},
-						callback: function (data) {
+						var self = this;
 
-							if(1 == data.status){
-								var parsedData = JSON.parse(data.data);
-								self.bookData = parsedData.booklist;
-								if(0 == self.bookData.length){
-									Toast('没有记录本！')
-								}								
+						ajax({
+							url: '/eln/book-list',
+							method: 'post',
+							data: {
+								uid: this.uid,
+							},
+							callback: function(data) {
+
+								if (1 == data.status) {
+									var parsedData = JSON.parse(data.data);
+									self.bookData = parsedData.booklist;
+									if (0 == self.bookData.length) {
+										Toast('没有记录本！')
+									}
+								}
 							}
-						}
-					})
-				},
-				//计算记录本名
-				calBookName(book){
-					var res = 'N' + (new Date(book.create_time)).getFullYear().toString().slice(2) + book.code +'（'+book.name+'）';
-					//把计算后的结果保存一下。
-					book.caled_name = res;
-					return res;
-				},
+						})
+					},
+					//计算记录本名
+					calBookName(book) {
+						var res = 'N' + (new Date(book.create_time)).getFullYear().toString().slice(2) + book.code + '（' + book.name + '）';
+						//把计算后的结果保存一下。
+						book.caled_name = res;
+						return res;
+					},
 
-			},
-			created(){
-				//初始化，拿数据
- 				this.getList();
-			}
+				},
+				created() {
+					//初始化，拿数据
+					this.getList();
+				}
 
 
 		}
-	</script>}
+	</script>
