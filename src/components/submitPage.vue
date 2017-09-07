@@ -4,12 +4,12 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm" >发布</button>
+				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">发布</button>
 				<!-- v-show="exp.id && choosedImgArr.length && book.id" -->
 			</div>	
 
 			<div class="con-wrap bgwhite">
-				<textarea class="remark" placeholder='填写备注信息' v-model="localRemark" @input="changeRemark"></textarea>
+				<textarea class="remark" placeholder='填写备注信息' v-model="localRemark" @input="changeRemark" maxlength="100"></textarea>
 				<ul class="up-imgs clearfix">
 					<li v-for="(item, index) in choosedImgArr" >
 						<i @click="delPic(index)" class="eln-ico del-pic-ico"></i>
@@ -25,6 +25,7 @@
 						action="/upload/upload-file"
 						:on-success="uploadOk"
 						:on-error="uploadErr"
+						:on-progress = 'uploadProgress'
 
 						:auto-upload="true"></el-upload>
 					</li>
@@ -150,7 +151,7 @@
 							'remark':this.remark,
 						})
 					}
-
+					this.$store.commit('changeLoading',true);
 					ajax({
 						url: '/eln/save-img',
 						method: 'post',
@@ -161,7 +162,7 @@
 							remark:this.remark				
 						},
 						callback: function (data) {
-
+							self.$store.commit('changeLoading',false);
 							if(1 == data.status){
 								//成功
 								self.confirmOpt.show = false;
@@ -211,12 +212,18 @@
 					}
 				},
 				uploadOk(response,file){
+					this.$store.commit('changeLoading',false);
 					if(1==response.status){
 						this.$store.commit('addImg',response.data)	
 						
 					}
 				},
-
+				uploadErr(err,file){
+					this.$store.commit('changeLoading',false);
+				},
+				uploadProgress(event, file, fileList){
+					this.$store.commit('changeLoading',true);
+				},
 				//显示预览。定位到点击的图片。
 				showPreview(index){
 					this.previewIndex = index;

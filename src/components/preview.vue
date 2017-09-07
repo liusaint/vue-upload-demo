@@ -7,7 +7,7 @@
 					<div class="top-bar preview-bar">
 						<i class="after-ico left-arrow-txt" @click="back">返回</i> 
 						<div class="txt">{{index+1}}/{{imgLen}}</div>
-						<i class="eln-ico right-search" @click="delPic(index)"></i> 
+						<i class="eln-ico right-del" @click="delPic(index)"></i> 
 					</div>
 					<div class="slider-img-wrap">
 						<!-- 这一段可能以后还会用得着，可以看一看。 -->

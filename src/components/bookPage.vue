@@ -5,8 +5,7 @@
 			<!-- 选择记录本 -->
 			<div class="top-bar bgwhite">
 				<i class="eln-ico left-arrow"  @click="goBack"></i>				
-				<div class="txt">选择记录本</div>
-				<i class="eln-ico right-search"></i>
+				<div class="txt">选择记录本</div>				
 				<router-link to="/searchPage" class="eln-ico right-search" tag="i"></router-link>
 			</div>	
 

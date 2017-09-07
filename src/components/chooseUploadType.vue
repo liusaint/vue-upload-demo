@@ -16,7 +16,7 @@
 				ref="upload_camera"
 				:on-success="uploadOk"
 				:on-error="uploadErr"
-
+				:on-progress = 'uploadProgress'
 				action="/upload/upload-file"
 				:auto-upload="true"></el-upload>
 
@@ -37,6 +37,7 @@
 				action="/upload/upload-file"
 				:on-success="uploadOk"
 				:on-error="uploadErr"
+				:on-progress = 'uploadProgress'
 				:auto-upload="true" >
 				</el-upload>
 
@@ -68,22 +69,19 @@
 			uploadOk(response,file){
 				if(1==response.status){
 					this.$store.commit('addImg',response.data)
+					this.$store.commit('changeLoading',false);
 					this.$router.replace('/submitPage');
 				}
 			},
 			uploadErr(err,file){
+				this.$store.commit('changeLoading',false);
 				alert(JSON.stringify(err))
 				console.log(arguments,2);
 				// this.$router.push('/submitPage');
 			},
-			// triggerCamera(event){
-			// 	var $el = this.$refs.upload_camera.$el;
-			// 	$el.getElementsByTagName('input')[0].click();
-			// },
-			// triggerBook(event){
-			// 	var $el = this.$refs.upload_file.$el;
-			// 		$el.getElementsByTagName('input')[0].click();
-			// },
+			uploadProgress(event, file, fileList){
+				this.$store.commit('changeLoading',true);
+			},
 			setUid(){
 				var uid = location.search.match(/uid=(\d+)/)[1];
 				this.$store.commit('setUid',parseInt(uid));

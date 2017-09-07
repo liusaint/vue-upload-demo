@@ -11,6 +11,7 @@ const state = {
 	showPreview:false,//是否预览,
 	uid:'', //用户id
 	remark:'',
+	showLoading:false,
 }
 
 const mutations = {
@@ -43,9 +44,14 @@ const mutations = {
 		state.book={};
 		state.exp={};
 		state.showPreview=false;
+		state.remark ='';
+		state.showLoading = false;
 	},
 	changeRemark(state,remark){
 		state.remark = remark;
+	},
+	changeLoading(state,bool){
+		state.showLoading = bool || false;
 	}
 }
 

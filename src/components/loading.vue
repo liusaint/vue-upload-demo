@@ -1,11 +1,15 @@
 <template>
-	<div class="loading-box" style="position: fixed;">
-	<img class="middle" src="/image/loading/small_load.gif">
+	<div class="loading-box" style="position: fixed;" v-show="showLoading">
+	<img class="middle" src="../images/small_load.gif">
 	</div>
 </template>
 <script>
-	export default {
+	import { mapState } from 'vuex'
 
+	export default {
+		computed: {
+			...mapState(['showLoading']),
+		},	
 	}
 </script>
 <style>
