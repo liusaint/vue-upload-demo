@@ -23,6 +23,7 @@
 
 	</template>
 	<script>
+		import { Toast } from 'mint-ui';
 		import {ajax,localSave}  from '../js/common'
 		import { mapState } from 'vuex'
 		export default {
@@ -92,6 +93,11 @@
 								}else{
 									self.expData = self.expData.concat(expList)
 								}
+								//检查所有数据，来确认。
+								if(0 == self.expData.length){
+									Toast('该记录本下没有实验')
+								}	
+								//检查最近一次获取的数据来确认。
 								if(expList.length == 0){
 									self.dataOver = true;
 								}else{

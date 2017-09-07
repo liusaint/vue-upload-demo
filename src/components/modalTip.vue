@@ -1,6 +1,6 @@
 <template>
 <!-- 这种公共的应该如何调用？每个页面单独引入吗？ -->
-	<div class="modal-wrap" v-show="modalOpt.show">
+	<div class="modal-wrap" v-show="showModalTip">
 		<div class="modal-black"></div> <!-- 遮罩 -->
 		<div class="modal-con modal-tip">
 			<img src="../images/success.png" height="137" width="134" alt="" v-show="modalOpt.type == 'success'">
@@ -10,8 +10,12 @@
 	
 </template>
 <script>
+	import { mapState } from 'vuex'
 	export default {
 		props:['modalOpt'],
+		computed:{
+			...mapState(['showModalTip'])
+		}
 	}
 </script>
 

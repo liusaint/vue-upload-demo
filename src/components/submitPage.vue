@@ -4,7 +4,7 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">发布</button>
+				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">确定</button>
 				<!-- v-show="exp.id && choosedImgArr.length && book.id" -->
 			</div>	
 
@@ -26,7 +26,6 @@
 						:on-success="uploadOk"
 						:on-error="uploadErr"
 						:on-progress = 'uploadProgress'
-
 						:auto-upload="true"></el-upload>
 					</li>
 				</ul>
@@ -105,7 +104,7 @@
 				submitConfirm(){
 					this.confirmOpt = {
 						show:true,
-						txt:'确定上传图片',
+						txt:'确认上传？（为避免数据冲突，请先在PC端保存相应的实验）',
 						cancelTxt:'取消',
 						cancelFn:this.cancelUpload.bind(this),
 						confirmTxt:'确定',
@@ -166,12 +165,14 @@
 							if(1 == data.status){
 								//成功
 								self.confirmOpt.show = false;
-								self.$router.replace('');
+								self.$router.replace('/');
 								//操作成功，在后面的页面弹出操作
 								setTimeout(function(){
-									Toast(1);
-								}, 10);
+									self.$store.commit('changeModalTip',true);
+								}, 1);
 
+							}else{
+								data.message && Toast(data.message);
 							}
 						}
 					})
@@ -214,8 +215,9 @@
 				uploadOk(response,file){
 					this.$store.commit('changeLoading',false);
 					if(1==response.status){
-						this.$store.commit('addImg',response.data)	
-						
+						this.$store.commit('addImg',response.data);					
+					}else{
+						response.message && alert(response.message);
 					}
 				},
 				uploadErr(err,file){
@@ -244,6 +246,7 @@
 	@import '../../node_modules/mint-ui/lib/toast/style.css';
 		.submit{
 			margin-top: 16px;
+			line-height: 1em;
 		}
 		.el-upload__files{
 			display: none;

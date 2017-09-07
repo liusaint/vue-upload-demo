@@ -44,7 +44,7 @@
 			</div>
 			<div class="placeholder"></div>
 		</div>
-		<!-- <modal-tip :modalOpt="modalOpt"></modal-tip> -->
+		<modal-tip :modalOpt="modalOpt"></modal-tip>
 
 
 
@@ -67,10 +67,12 @@
 		components:{modalTip},
 		methods:{
 			uploadOk(response,file){
+				this.$store.commit('changeLoading',false);
 				if(1==response.status){
-					this.$store.commit('addImg',response.data)
-					this.$store.commit('changeLoading',false);
+					this.$store.commit('addImg',response.data);				
 					this.$router.replace('/submitPage');
+				}else{
+					response.message && alert(response.message);
 				}
 			},
 			uploadErr(err,file){

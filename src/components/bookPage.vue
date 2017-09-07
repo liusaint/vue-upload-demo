@@ -21,6 +21,7 @@
 
 	</template>
 	<script>
+		import { Toast } from 'mint-ui';
 		import {ajax,localSave}  from '../js/common'
 		import { mapState } from 'vuex'
 		export default {
@@ -56,7 +57,10 @@
 
 							if(1 == data.status){
 								var parsedData = JSON.parse(data.data);
-								self.bookData = parsedData.booklist;								
+								self.bookData = parsedData.booklist;
+								if(0 == self.bookData.length){
+									Toast('没有记录本！')
+								}								
 							}
 						}
 					})

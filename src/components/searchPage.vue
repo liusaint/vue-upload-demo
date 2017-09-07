@@ -3,9 +3,10 @@
     <div class="top-bar bgwhite">
       <i class="eln-ico left-arrow" @click="goBack"></i>
       <div class="input-wrap after-ico">
-        <input type="text" placeholder="请输入记录本名称" v-model="search_word" @input="searchBook">
+        <input type="text" placeholder="请输入记录本名称" v-model="search_word" >
         <i class="del-input eln-ico" @click="clearInput" v-show="search_word"></i>
       </div>
+      <span class="right-search-txt" @click="searchBook">搜索</span>
     </div>
     <div class="absolute-white search-wrap search-his" v-show="bookHis.length>0 && !search_word">
       <div class="title">最近搜索

@@ -12,6 +12,7 @@ const state = {
 	uid:'', //用户id
 	remark:'',
 	showLoading:false,
+	showModalTip:false,
 }
 
 const mutations = {
@@ -52,7 +53,16 @@ const mutations = {
 	},
 	changeLoading(state,bool){
 		state.showLoading = bool || false;
-	}
+	},
+	changeModalTip(state,bool){
+		state.showModalTip = bool || false;
+		//显示3s后再隐藏
+		if(true == bool){
+			setTimeout(function(){
+				state.showModalTip = false;
+			},3000)
+		}
+	},
 }
 
 const actions = {
