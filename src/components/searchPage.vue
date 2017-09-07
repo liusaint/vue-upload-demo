@@ -81,9 +81,10 @@ export default {
 
           self.loading = false;
 
-          var parsedData = JSON.parse(data.data);
+
 
           if (1 == data.status) {
+            var parsedData = JSON.parse(data.data);
             self.bookData = parsedData.booklist;
             if (self.bookData.length == 0) {
               self.showNoData = true;

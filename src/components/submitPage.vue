@@ -4,7 +4,7 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">确定</button>
+				<button class="submit fr blue " @click="submitConfirm" >确定</button>
 				<!-- v-show="exp.id && choosedImgArr.length && book.id" -->
 			</div>	
 
@@ -55,7 +55,8 @@
 				return {
 					confirmOpt:{
 						show:false,
-						txt:'确定上传图片',
+						txt:'确定上传',
+						showOhters:true,
 						cancelTxt:'取消',
 						cancelFn:this.cancelUpload.bind(this),
 						confirmTxt:'确定',
@@ -83,6 +84,7 @@
 					this.confirmOpt = {
 						show:true,
 						txt:'退出此次编辑',
+						showOhters:false,
 						cancelTxt:'取消',
 						cancelFn:this.cancelUpload.bind(this),
 						confirmTxt:'退出',
@@ -104,7 +106,8 @@
 				submitConfirm(){
 					this.confirmOpt = {
 						show:true,
-						txt:'确认上传？（为避免数据冲突，请先在PC端保存相应的实验）',
+						txt:'确认上传？',
+						showOhters:true,
 						cancelTxt:'取消',
 						cancelFn:this.cancelUpload.bind(this),
 						confirmTxt:'确定',

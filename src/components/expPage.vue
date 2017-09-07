@@ -82,11 +82,10 @@
 						},
 						callback: function (data) {
 
-							self.loading = false;
-
-							var parsedData = JSON.parse(data.data);
+							self.loading = false;							
 							
 							if(1 == data.status){
+								var parsedData = JSON.parse(data.data);
 								var expList = parsedData.expList;
 								if(1 == self.page){
 									self.expData = expList;

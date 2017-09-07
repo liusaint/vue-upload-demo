@@ -6,7 +6,9 @@
 		<div class="modal-con modal-confirm">	
 			<div class="txt">
 				{{confirmOpt.txt}}
+				<p class="small-txt" v-show="confirmOpt.showOhters">为避免数据冲突，<br/>请先在PC端保存相应的实验</p>
 			</div>
+
 			<div class="confirm-btn-wrap">
 				<div class="confirm-btn border-r" @click="cancel">
 					{{confirmOpt.cancelTxt}}
@@ -77,6 +79,10 @@
 					line-height: 40px;
 					color:#1388ff;
 				}
+			}
+			.small-txt{
+				font-size:11px;
+				margin-top: 5px;
 			}
 		}
 

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import uploadType from '@/components/chooseUploadType'
 import submitPage from '@/components/submitPage'
 import bookPage from '@/components/bookPage'

@@ -112,9 +112,10 @@ export default {
 
           self.loading = false;
 
-          var parsedData = JSON.parse(data.data);
+  
           
           if (1 == data.status) {
+            var parsedData = JSON.parse(data.data);
             var expList = parsedData.expList;
             var len = expList.length;
             if (1 == self.page) {
