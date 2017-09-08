@@ -32,3 +32,6 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 * uid的获取。
 
 * loading的问题.这样的组件如何封装？最外层？
+* 提交界面。调用上传功能。
+* nodejs后台功能接口。
+* 组件封装查看。

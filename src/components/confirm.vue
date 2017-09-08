@@ -6,7 +6,7 @@
 		<div class="modal-con modal-confirm">	
 			<div class="txt">
 				{{confirmOpt.txt}}
-				<p class="small-txt" v-show="confirmOpt.showOhters">为避免数据冲突，<br/>请先在PC端保存相应的实验</p>
+				<p class="small-txt" v-show="confirmOpt.showOhters">提示：为避免数据冲突，<br/>请先在PC端保存相应的实验</p>
 			</div>
 
 			<div class="confirm-btn-wrap">
@@ -83,6 +83,7 @@
 		.small-txt{
 			font-size:11px;
 			margin-top: 5px;
+			color:#999;
 		}
 	}
 

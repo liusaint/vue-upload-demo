@@ -10,16 +10,20 @@
     <!-- built files will be auto injected -->
   </body>
     <script>
+
+
+    //微信右上角菜单隐藏
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    	if(WeixinJSBridge){
+        WeixinJSBridge.call('hideOptionMenu');
+      }
+    });
+
     // if ('addEventListener' in document) {
     //   document.addEventListener('DOMContentLoaded', function () {
     //     FastClick.attach(document.body)
     //   }, false)
     // }
-
-    //微信右上角菜单隐藏
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-    	// WeixinJSBridge&&WeixinJSBridge.call('hideOptionMenu');
-    });
 
   </script>
 </html>

@@ -4,7 +4,7 @@
 
 			<div class="top-bar bgwhite">
 				<button class="cancel" @click='cancelConfirm'>取消</button>
-				<button class="submit fr blue " @click="submitConfirm" >确定</button>
+				<button class="submit fr blue " @click="submitConfirm" v-show="exp.id && choosedImgArr.length && book.id">确定</button>
 				<!-- v-show="exp.id && choosedImgArr.length && book.id" -->
 			</div>	
 

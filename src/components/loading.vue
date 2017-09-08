@@ -22,7 +22,7 @@
 		box-shadow: 0 0 5px rgba(0,0,0,.3);
 		padding: 0;
 		text-shadow: 0 0 2px #000;
-		z-index: 999999;
+		z-index: 999;
 		top: 0;
 	}
 	.loading-box .middle {
