@@ -49,8 +49,8 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
-// handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
+// handle fallback for HTML5 history API 这一句加了其它路由会失效
+// app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
 app.use(devMiddleware)
@@ -60,6 +60,7 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
+// 静态资源访问
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
@@ -80,6 +81,29 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
+
+/* 上传文件相关的后台接口*/
+var fs = require('fs');
+var multer  = require('multer')
+var upload = multer({ dest: 'upload/' });
+
+app.use('/upload', express.static('./upload'));
+app.post('/upload/upload-file', upload.single('file'), function(req, res, next){
+
+    var image=req.file.path; 
+    var host = req.headers.host;//来自哪个域名
+    var resData = {
+      status:1,
+      data:{
+        img_url:host+'/'+req.file.destination+req.file.filename,
+      }
+    }
+
+    res.send(resData);
+});
+
+/* 上传文件相关的后台接口*/
+
 var server = app.listen(port)
 
 module.exports = {
@@ -88,3 +112,5 @@ module.exports = {
     server.close()
   }
 }
+
+
