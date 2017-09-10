@@ -627,3 +627,38 @@ body{
 .el-upload__files{
 	display:none;
 }
+
+.choose-ul{
+	font-size:14px;
+	text-align:center;
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	&>li{
+		height:50px;
+		line-height: 50px;
+		width:100%;
+		background:#fff;
+		color:#333;
+		position:relative;
+		&.border{
+			border-bottom:1px solid @borderColor;
+		}
+		&.mt5{
+			margin-top: 5px;
+		}
+		.el-upload__inner{
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			opacity: 0;
+		}
+		input{
+			display:none;
+		}
+	}
+}
