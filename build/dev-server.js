@@ -102,6 +102,24 @@ app.post('/upload/upload-file', upload.single('file'), function(req, res, next){
     res.send(resData);
 });
 
+var importData = require('./data.js');
+app.post('/eln/book-list', function(req, res, next){
+
+    var resData = importData.bookData;
+    res.send(resData);
+});
+
+app.post('/eln/exp-list', function(req, res, next){
+
+    var resData = importData.expData;
+    res.send(resData);
+});
+
+app.post('/eln/save-img', function(req, res, next){
+    var resData = {status:1};
+    res.send(resData);
+});
+
 /* 上传文件相关的后台接口*/
 
 var server = app.listen(port)
