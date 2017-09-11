@@ -26,7 +26,7 @@
 </template>
 <script>
 import noData from './noData.vue';
-import { ajax, localSave } from '../js/common'
+import { ajax, localSave,calDate } from '../js/common'
 import { mapState } from 'vuex'
 export default {
   data() {
@@ -129,7 +129,7 @@ export default {
     },
     //计算记录本名
     calBookName(book) {
-      var res = 'N' + (new Date(book.create_time)).getFullYear().toString().slice(2) + book.code + '（' + book.name + '）';
+      var res = 'N' + (calDate(book.create_time)).getFullYear().toString().slice(2) + book.code + '（' + book.name + '）';
       //把计算后的结果保存一下。
       book.caled_name = res;
       return res;

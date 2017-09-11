@@ -43,3 +43,10 @@ export function localSave(key, val) {
 	}
 
 }
+//ios下面　new Date('2011-12-11 12:33:11')这种会出错。需要做兼容处理
+export function calDate(strdate){
+    var arr = strdate.split(/[- : \/]/);  
+    var date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);  
+    return date;
+
+}

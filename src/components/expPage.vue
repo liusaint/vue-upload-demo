@@ -24,7 +24,7 @@
 	</template>
 	<script>
 		import { Toast } from 'mint-ui';
-		import {ajax,localSave}  from '../js/common'
+		import {ajax,localSave,calDate}  from '../js/common'
 		import { mapState } from 'vuex'
 		export default {
 			data() {
@@ -58,7 +58,7 @@
 						} else if (2 == len) {
 							exp_page = '0' + exp_page;
 						}
-						var res = 'N' + (new Date(exp.book_create_time)).getFullYear().toString().slice(2) + exp.code + '-' + exp_page;
+						var res = 'N' + (calDate(exp.book_create_time)).getFullYear().toString().slice(2) + exp.code + '-' + exp_page;
 						//把计算后的结果保存一下。
 						exp.caled_name = res;
 						return res;
