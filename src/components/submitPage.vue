@@ -33,33 +33,8 @@
 			<div class="modal-wrap" v-show = "showChoose">
 				<div class="modal-black"></div>
 				<ul class="choose-ul">
-					<li class="border">拍照上传
-									<el-upload				
-				accept="image/*"
-				class="upload-input"
-				ref="upload_camera"
-				:on-success="uploadOk"
-				:on-error="uploadErr"
-				:on-progress = 'uploadProgress'
-				:before-upload = 'fileCheck'
-				action="/upload/upload-file"
-				:auto-upload="true"></el-upload>
-
-				</li>
-					<li>从手机相册选择
-						<el-upload
-						capture="camera"
-						accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif,image/wmf,image/tif"
-						class="upload-input"
-						multiple
-						ref="upload_file"
-						action="/upload/upload-file"
-						:on-success="uploadOk"
-						:on-error="uploadErr"
-						:on-progress = 'uploadProgress'
-						:before-upload = 'fileCheck'
-						:auto-upload="true"></el-upload>
-					</li>
+					<li class="border">拍照上传<el-upload accept="image/*" class="upload-input" ref="upload_camera" :on-success="uploadOk" :on-error="uploadErr" :on-progress = 'uploadProgress' :before-upload = 'fileCheck' action="/upload/upload-file" :auto-upload="true"></el-upload></li>
+					<li>从手机相册选择<el-upload capture="camera" accept="image/jpeg,image/jpg,image/png,image/bmp,image/gif,image/wmf,image/tif" class="upload-input" multiple ref="upload_file" action="/upload/upload-file" :on-success="uploadOk" :on-error="uploadErr" :on-progress = 'uploadProgress' :before-upload = 'fileCheck' :auto-upload="true"></el-upload></li>
 					<li class="mt5" @click="cancelFn">取消</li>
 				</ul>
 
@@ -320,6 +295,14 @@
 			},
 			created() {
 				this.localRemark = this.remark;
+				this.showChoose = false;
+				var self = this;
+				this.$nextTick(function() {
+					//补全插件的不足。上传文件控件初始化成功之后添加这个属性，直接调相机。
+					var $el = self.$refs.upload_camera.$el;
+					$el.getElementsByTagName('input')[0].setAttribute('capture', 'camera');
+
+				})
 			}
 
 		}
