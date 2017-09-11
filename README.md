@@ -35,3 +35,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 * 提交界面。调用上传功能。
 * nodejs后台功能接口。
 * 组件封装查看。
+* 一个bug，如果输入了新内容，但是没有点搜索，那么滚动加载出来的会是按照新的keyword搜索的结果
