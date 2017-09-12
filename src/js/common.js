@@ -18,7 +18,7 @@ export function ajax(params) {
 		.then((response) => {
 			let data = response.data
 			if(1 != data.status){
-				alert(data.message);
+				data.message && alert(data.message);
 			}
 			params.callback(data)
 

@@ -3,10 +3,10 @@
     <div class="top-bar bgwhite">
       <i class="eln-ico left-arrow" @click="goBack"></i>
       <div class="input-wrap after-ico">
-        <input type="text" placeholder="请输入实验标题、关键字和实验编号" v-model="search_word" >
-        <i class="del-input eln-ico" @click="clearInput" v-show="search_word"></i>
+        <input type="text" placeholder="请输入实验标题、关键字和实验编号" v-model="input_word"  @keyup.enter='searchExp'>
+        <i class="del-input eln-ico" @click="clearInput" v-show="input_word"></i>
       </div>
-      <span class="right-search-txt" @click="searchExp">搜索</span>
+      <!-- <span class="right-search-txt" @click="searchExp">搜索</span> -->
     </div>
     <div class="absolute-white search-wrap search-his" v-show="expHis.length>0 && !search_word">
       <div class="title">最近搜索
@@ -31,7 +31,8 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      search_word: '',
+      input_word:'',//输入的值
+      search_word: '',//搜索的值
       expHis: [], //记录本查询历史
       expData: [],
       loading: false,
@@ -47,6 +48,7 @@ export default {
   methods: {
     clearInput() {
       this.search_word = '';
+      this.input_word = '';
     },
     delHis() {
       //删除local本地存储
@@ -55,7 +57,7 @@ export default {
     },
     //搜索记录本。
     searchExp() {
-
+      this.search_word = this.input_word;
       this.page = 1;
       this.loading = false;
       this.dataOver = false;
@@ -64,7 +66,7 @@ export default {
       this.saveHisWord();
     },
     searchHis(item) {
-      this.search_word = item;
+      this.input_word = item;
       this.searchExp();
     },
     //计算实验名
@@ -189,6 +191,7 @@ export default {
     this.book_id = this.$route.params.id;
     this.showNoData = false;
     this.search_word = '';
+    this.input_word = '';
   }
 }
 
