@@ -44,9 +44,11 @@
 					chooseExp(item) {
 						this.$store.commit('chooseExp', item);
 						//跳转到提交页面。
-						this.$router.replace('/submitPage');
+						// this.$router.replace('/submitPage');
+						this.$router.go(-2);
 					},
 					goBack() {
+						//回到记录本页面。
 						this.$router.go(-1);
 					},
 					//计算实验名

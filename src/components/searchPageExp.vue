@@ -6,7 +6,7 @@
         <input type="text" placeholder="请输入实验标题、关键字和实验编号" v-model="input_word"  @keyup.enter='searchExp'>
         <i class="del-input eln-ico" @click="clearInput" v-show="input_word"></i>
       </div>
-      <!-- <span class="right-search-txt" @click="searchExp">搜索</span> -->
+      <span class="right-search-txt" @click="searchExp">搜索</span>
     </div>
     <div class="absolute-white search-wrap search-his" v-show="expHis.length>0 && !search_word">
       <div class="title">最近搜索
@@ -148,10 +148,13 @@ export default {
     chooseExp(item) {
       this.$store.commit('chooseExp', item);
       //跳转到提交页面。
-      this.$router.replace('/submitPage');
+      // this.$router.replace('/submitPage');
+      this.$router.go(-3)
     },
     goBack() {
+      //加到实验列表。
       this.$router.go(-1);
+
     },
     getHisWord() {
       var expHis = localSave('expHis');
