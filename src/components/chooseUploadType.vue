@@ -17,6 +17,7 @@
 				:on-success="uploadOk"
 				:on-error="uploadErr"
 				:on-progress = 'uploadProgress'
+				:before-upload = 'fileCheck'
 				action="/upload/upload-file"
 				:auto-upload="true"></el-upload>
 
